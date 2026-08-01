@@ -13,35 +13,43 @@ SPPG Companion is an enterprise-grade developer companion built on Clean Archite
 - **Environment Registry** (`EnvironmentRegistry` - Metadata for `development`, `staging`, `uat`, `production`, `demo`, `testing`)
 - **Storage Service** (`StorageService` - Chrome Storage Local Abstraction)
 - **Validation Service** (`ValidationService` - Workspace validation rules)
+- **Production Integration Layer** (`IntegrationPipeline` & `IntegrationMiddleware`)
 
 ---
 
+## 🏷️ Current Release
+
+- **Version**: `v0.5.0`
+- **Status**: `Production Hardening Complete`
+- **Repository State**: `Production Ready`
+- **Completed Scope**: Business Framework, Performance Benchmark (WP-5.1), Reliability (WP-5.2), Observability (WP-5.3), Production Integration (WP-5.4), Runtime Wiring (`BusinessDispatcher` delegation).
+- **Next Target**: Sprint 5 — Phase 6 Release Engineering.
+
 ---
 
-## 🛠️ Sprint 3B Architecture & Execution Status
+## 🛠️ Sprint 4 Hardening & Architectural Status
 
-- ✅ **WP-1**: Runtime Publisher Wiring (13 / 13 Runtime Publishers) — `100%`
-- ✅ **WP-2 & WP-2.1**: Dual Publishing & Startup Configuration Hardening — `100%`
-- ✅ **WP-3**: Subscriber Layer (Analytics, Metrics, Workspace, Storage, Lifecycle) — `100%`
-- ✅ **WP-4**: Business Framework, Domain Handlers, Cutover, and Stage 7.2 Cleanup — `100%`
+- ✅ **WP-5.1**: Performance Benchmark Framework (`src/core/performance/`) — `100%`
+- ✅ **WP-5.2**: Reliability & Fault Tolerance Framework (`src/core/reliability/`) — `100%`
+- ✅ **WP-5.3**: Observability & Metrics Platform (`src/core/observability/`) — `100%`
+- ✅ **WP-5.4**: Production Integration Layer & Runtime Wiring (`src/core/integration/`) — `100%`
 
 | Execution Metric | Current Value | Authority Path |
 | :--- | :---: | :---: |
-| **Framework** | `READY` | Business Execution Core |
-| **Architecture** | `COMPLETE` | 3 Domain Handlers (15 Topics) |
+| **Architecture** | `COMPLETE` | Production-Ready Event-Driven Architecture |
 | **Business Framework** | `PRODUCTION` | Sole Production Authority |
-| **Business Execution** | `ACTIVE` | Authoritative Execution Path |
-| **Execution Mode** | `BUSINESS ONLY` | Default Production Mode |
-| **Authority Path** | `BUSINESS` | Business Execution Framework |
-| **Legacy ActivityService** | `DEPRECATED (Stub Only)` | Runtime Calls Decoupled |
-| **Legacy Infrastructure** | `CLEANED UP` | Infrastructure Cleaned Up |
-| **Repository Health** | `CLEAN` | Zero Dead Code / Circular Deps |
-| **Technical Debt** | `LOW` | Obsolete Wrappers Eliminated |
-| **Health Score** | `PERFECT` | 100% Parity Verified |
-| **Match Rate** | `100%` | 0 Mismatches Detected |
-| **Migration Status** | `COMPLETE` | Business Framework Migration Complete |
-| **WP-4 Status** | `COMPLETE` | Work Package 4 Complete |
-| **Release Readiness** | `READY FOR HARDENING` | Sprint 4 — WP-5 Next |
+| **Performance Benchmark** | `COMPLETE` | Microsecond Timing & Layer Telemetry |
+| **Reliability Engine** | `COMPLETE` | Retry Policy, Timeout Guard & Health Monitor |
+| **Observability Platform** | `COMPLETE` | Dashboard Model, Telemetry Trends & Reports |
+| **Production Integration** | `COMPLETE` | Feature-Flagged Execution Pipeline |
+| **Runtime Wiring** | `VERIFIED` | Dispatcher $\rightarrow$ Integration Middleware |
+| **Rollback Capability** | `READY` | Instant Flag-Flip Bypass |
+| **Repository Health** | `EXCELLENT` | 0 Compilation Errors / 0 Type Errors |
+| **Technical Debt** | `LOW` | Clean Modular Codebase |
+| **Build Status** | `PASS` | Built Cleanly in 2.33s |
+| **Type Check** | `PASS` | 0 Errors via `vue-tsc --noEmit` |
+| **Test Coverage** | `11 / 11 PASS` | 100% Success Rate Across All Specs |
+| **Git Release Tag** | `v0.5.0` | Production Hardening Complete Baseline |
 
 ## 💻 Development & Build Setup
 

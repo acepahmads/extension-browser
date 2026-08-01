@@ -2,13 +2,13 @@
 ## SPPG Companion Platform — Executive Milestone Registry
 
 > **Title**: SPPG Companion Master Milestone Index  
-> **Version**: 1.0.0  
-> **Status**: APPROVED  
+> **Version**: v0.5.0  
+> **Status**: RELEASED  
 > **Author**: Principal Software Architect  
 > **Reviewer**: Enterprise Architecture Board  
 > **Created**: 2026-07-31  
-> **Last Updated**: 2026-07-31  
-> **Next Review**: 2026-08-30  
+> **Last Updated**: 2026-08-02  
+> **Baseline**: v0.5.0 (Production Hardening Complete)  
 
 ---
 
@@ -17,12 +17,12 @@
 | Property | Value |
 | :--- | :--- |
 | **Project Name** | SPPG Companion Extension (`BGN-Extension`) |
-| **Current Platform Version** | v1.0.0 (Sprint 3B Phase 1 Foundation) |
+| **Current Platform Version** | v0.5.0 (Sprint 4 Phase 5 Production Hardening Complete) |
 | **Architecture Style** | Event-Driven Micro-Kernel Extension Architecture (MV3) |
-| **Current Sprint** | Sprint D0.1 (Documentation Governance & Standards) |
-| **Current Milestone** | **M05.2**: Sprint D0.1 — Documentation Governance & Standards |
-| **Current Status** | **COMPLETED** |
-| **Overall Completion** | **42.1%** |
+| **Current Sprint** | Sprint 4 (Production Hardening & Runtime Integration) |
+| **Current Milestone** | **M08**: Sprint 4 — Production Hardening & Runtime Integration |
+| **Current Status** | **RELEASED** |
+| **Overall Completion** | **52.9%** |
 
 ---
 
@@ -46,29 +46,19 @@
     ↓
   [M05.1] Sprint D0: Engineering Documentation Foundation (COMPLETED)
     ↓
-  [M05.2] Sprint D0.1: Documentation Governance & Standards (COMPLETED) <-- CURRENT
+  [M05.2] Sprint D0.1: Documentation Governance & Standards (COMPLETED)
     ↓
-  [M06] Sprint 3B Phase 2: Event Bus Pipeline, Resilience & Metrics (NEXT MILESTONE)
+  [M06] Sprint 3B Phase 2: Event Bus Pipeline, Resilience & Metrics (COMPLETED)
     ↓
-  [M07] Sprint 3B Phase 3: Event Bus IPC Bridges & System Integration
+  [M07] Sprint 3B Phase 3: Event Bus IPC Bridges & System Integration (COMPLETED)
     ↓
-  [M08] Sprint 4: Network Interceptor Engine
+  [M07.1] Sprint 3B Phase 4: Business Execution Framework (COMPLETED)
     ↓
-  [M09] Sprint 5: Storage Engine & Persistence Adapter
+  [M08] Sprint 4 Phase 5: Production Hardening & Runtime Wiring (COMPLETED - v0.5.0 RELEASED) <-- CURRENT
     ↓
-  [M10] Sprint 6: Developer Console & Telemetry Suite
+  [M09] Sprint 5: Phase 6 Release Engineering & CI/CD Pipeline (NEXT MILESTONE)
     ↓
-  [M11] Sprint 7: Discovery Engine & Auto-Telemetry
-    ↓
-  [M12] Sprint 8: Endpoint Registry & API Catalog
-    ↓
-  [M13] Sprint 9: Mapping Engine & Schema Inspector
-    ↓
-  [M14] Sprint 10: Replay & Export Engine
-    ↓
-  [M15] Sprint 11: AI Analyzer Engine & Anomaly Detection
-    ↓
-  [M16] Sprint 12: Backend Synchronization & Enterprise Gateway
+  [M10] Sprint 6: Storage Engine & Persistence Adapter
 ```
 
 ---
@@ -87,140 +77,39 @@
 | **M05.2** | Documentation Governance | Sprint D0.1 | `COMPLETED` | Approved | N/A | N/A | N/A | Approved | 100% | Lead Architect | Approved | CHANGELOG, VERSION, Glossary, Standards, Contributing |
 | **M06** | Event Bus Pipeline & Metrics | Sprint 3B.2 | `COMPLETED` | Approved | Verified | Verified | Clean | Approved | 100% | Core Team | Approved | Validator, Middlewares, Priority Dispatcher, Metrics |
 | **M07** | Event Bus Subscriber Layer | Sprint 3B.3 | `COMPLETED` | Approved | Verified | Verified | Clean | Approved | 100% | Core Team | Approved | WP-1, WP-2, WP-2.1, WP-3 Stages 1-5 Complete |
-| **M07.1** | Business Execution Framework | Sprint 3B.4 | `COMPLETED` | Approved | Verified | Verified | Clean | Approved | 100% | Core Team | Approved | WP-4 Stages 1-7.2 Complete (100%) — Sprint 4 WP-5 Next |
-| **M08** | Network Interceptor Engine | Sprint 4 | `PLANNED` | Planned | Pending | Pending | Pending | Draft | 0% | Network Team | Pending | Fetch/XHR Interceptor & Telemetry |
-| **M09** | Storage Engine & Persistence | Sprint 5 | `PLANNED` | Planned | Pending | Pending | Pending | Draft | 0% | Storage Team | Pending | IndexedDB / Cache Storage |
-| **M10** | Developer Console Suite | Sprint 6 | `PLANNED` | Planned | Pending | Pending | Pending | Draft | 0% | Frontend Team | Pending | Advanced Dev Console |
-| **M11** | Discovery Engine | Sprint 7 | `PLANNED` | Planned | Pending | Pending | Pending | Draft | 0% | Core Team | Pending | Automatic Endpoint Discovery |
-| **M12** | Endpoint Registry | Sprint 8 | `PLANNED` | Planned | Pending | Pending | Pending | Draft | 0% | Core Team | Pending | API Catalog & Contract Management |
-| **M13** | Mapping Engine | Sprint 9 | `PLANNED` | Planned | Pending | Pending | Pending | Draft | 0% | Core Team | Pending | Request/Response Schema Mapper |
-| **M14** | Replay & Export Engine | Sprint 10 | `PLANNED` | Planned | Pending | Pending | Pending | Draft | 0% | Core Team | Pending | HAR Export & Traffic Replay |
-| **M15** | AI Analyzer Engine | Sprint 11 | `PLANNED` | Planned | Pending | Pending | Pending | Draft | 0% | AI Team | Pending | Pattern Detection & Anomaly Insights |
-| **M16** | Backend Synchronization | Sprint 12 | `PLANNED` | Planned | Pending | Pending | Pending | Draft | 0% | Platform Team | Pending | Enterprise Gateway Sync |
+| **M07.1** | Business Execution Framework | Sprint 3B.4 | `COMPLETED` | Approved | Verified | Verified | Clean | Approved | 100% | Core Team | Approved | WP-4 Stages 1-7.2 Complete (100%) |
+| **M08** | Production Hardening Suite | Sprint 4 | `RELEASED` | Approved | Verified | Verified | Clean | Approved | 100% | Core Team | Approved | WP-5.1 to WP-5.4 Complete — Git Tag v0.5.0 Baseline |
+| **M09** | Release Engineering & CI/CD | Sprint 5 | `PLANNED` | Planned | Pending | Pending | Pending | Draft | 0% | DevOps Team | Pending | Build Automation, E2E Testing, Release Packaging |
+| **M10** | Storage Engine & Persistence | Sprint 6 | `PLANNED` | Planned | Pending | Pending | Pending | Draft | 0% | Storage Team | Pending | IndexedDB / Cache Storage |
 
 ---
 
 # 4. Milestone Summary
 
-### M00: Project Vision & Strategy
-* **Objective**: Define the vision for the SPPG Companion Enterprise Developer Platform.
-* **Major Deliverables**: Platform Architecture Plan, Technology Stack Selection (Vue 3, TypeScript, Vite, TailwindCSS, Chrome MV3).
-* **Dependencies**: None.
-
-### M01: Sprint 1 — Extension Foundation & Base Configuration Layer
-* **Objective**: Establish Chrome Extension MV3 core structure, build tooling, options page, and storage adapter.
-* **Major Deliverables**: Manifest V3, Storage Adapter, Configuration Service, UI Layout system.
-* **Dependencies**: M00.
-
-### M02: Sprint 2 — Browser Lifecycle Engine & Activity Center
-* **Objective**: Build browser event monitoring engine and real-time developer activity stream UI.
-* **Major Deliverables**: `BrowserLifecycleService`, `TabService`, `NavigationService`, `WindowService`, `ActivityStore`, `ActivityCenterPage.vue`.
-* **Dependencies**: M01.
-
-### M03: Sprint 2.1 — Engine Completion & Enterprise Event Model Refinement
-* **Objective**: Achieve 100% lifecycle event coverage and refine the event payload schema without structural refactoring.
-* **Major Deliverables**: 24 complete lifecycle events, `sequence`, `sessionId`, `correlationId`, `source`, `severity`, `duration`, `Logger.success()`, Production Silent Mode, Diagnostics Center 6-component suite, Health Score (0-100%).
-* **Dependencies**: M02.
-
-### M04: Sprint 3A — Enterprise Event Bus Architecture Design & Revision
-* **Objective**: Design an enterprise-grade event bus architecture to serve as the communication backbone for Sprints 4–12.
-* **Major Deliverables**: Software Architecture Document (SAD), Revision Addendum, Event Envelope v1.0 design, Topic Taxonomy, Schema Registry design, Validator design, Replay Hook design.
-* **Dependencies**: M03.
-
-### M05: Sprint 3B Phase 1 — Event Bus Core Foundation
-* **Objective**: Implement the core Event Bus envelope, core engine, topic categorization, and basic pub/sub interface.
-* **Major Deliverables**: `BusEventEnvelope<T>`, `EventCategory`, `EventBusCore`, `publish()`, `subscribe()`, `once()`, `unsubscribe()`, `broadcast()`, unit test suite.
-* **Dependencies**: M04.
+### M08: Sprint 4 — Production Hardening & Integration (Baseline v0.5.0)
+* **Objective**: Build enterprise-grade Performance Benchmark Framework (WP-5.1), Reliability & Fault Tolerance Framework (WP-5.2), Observability & Metrics Platform (WP-5.3), and Production Integration Layer (WP-5.4).
+* **Major Deliverables**:
+  - `src/core/performance/` (BenchmarkService, microsecond latency timing, memory profiling)
+  - `src/core/reliability/` (RetryPolicyEngine, TimeoutGuard, FailureDetector, HealthMonitor)
+  - `src/core/observability/` (ObservabilityService, HealthDashboard 7-widget model, TelemetryService in-memory trends)
+  - `src/core/integration/` (IntegrationPipeline, IntegrationMiddleware, runtime feature flags, zero-bypass fallback)
+  - Production runtime wiring (`BusinessDispatcher` delegation to `IntegrationMiddleware`)
+* **Status**: **100% COMPLETE & RELEASED (v0.5.0)**. 11/11 Test Suites Passing.
 
 ---
 
-# 5. Architecture Evolution
-
-```
-[ PHASE 1: FOUNDATION & CONFIGURATION ] (Sprint 1)
-├── Chrome MV3 Service Worker
-├── Configuration Layer & Workspace Registry
-└── Storage Adapter (chrome.storage.local / localStorage)
-
-[ PHASE 2: TELEMETRY & LIFECYCLE ENGINE ] (Sprint 2 & 2.1)
-├── Browser Lifecycle Listener (Tabs, Navigation, Windows)
-├── Enterprise Activity Event Model (Session, Sequence, Correlation ID)
-├── Enterprise Logger Service (Success Level & Silent Production Mode)
-└── Diagnostics Center & Health Score Engine (0-100%)
-
-[ PHASE 3: EVENT BUS BACKBONE ] (Sprint 3A & 3B)  <-- CURRENT
-├── Core Event Bus Engine (Envelope v1.0, Pub/Sub, Wildcards)
-├── Middleware Pipeline & Event Validator (Phase 2)
-├── Priority Dispatcher & Trie Topic Router (Phase 2)
-└── Context IPC Bridges (Service Worker <-> Popup/Options/Content) (Phase 3)
-
-[ PHASE 4: INTERCEPTION & DATA ENGINE ] (Sprint 4 - 6)
-├── Network Interceptor Engine (Sprint 4)
-├── Storage Engine & Persistence (Sprint 5)
-└── Advanced Developer Console (Sprint 6)
-
-[ PHASE 5: DISCOVERY & CONTRACT SYSTEM ] (Sprint 7 - 9)
-├── Discovery Engine & Auto-Telemetry (Sprint 7)
-├── Endpoint Registry & API Catalog (Sprint 8)
-└── Mapping Engine & Schema Inspector (Sprint 9)
-
-[ PHASE 6: INTELLIGENCE & SYNC PLATFORM ] (Sprint 10 - 12)
-├── Traffic Replay & HAR Export (Sprint 10)
-├── AI Analyzer & Anomaly Detection (Sprint 11)
-└── Backend Synchronization & Enterprise Gateway (Sprint 12)
-```
-
----
-
-# 6. Current Progress
-
-* **Completed Milestones**: 6 of 17 (M00, M01, M02, M03, M04, M05)
-* **Current Milestone**: **M05**: Sprint 3B Phase 1 — Event Bus Core Foundation
-* **Next Milestone**: **M06**: Sprint 3B Phase 2 — Event Bus Pipeline, Resilience & Metrics
-* **Overall Completion**: **35.3% (6 / 17 Milestones Completed)**
-
----
-
-# 7. Upcoming Roadmap
-
-### M06: Sprint 3B Phase 2 — Event Bus Pipeline, Resilience & Metrics
-* **Objective**: Implement Validator, Middlewares (Sanitizer, Logger, Diagnostics), Priority Dispatcher, Trie Topic Router, Metrics Collector, and Dead Letter Queue.
-* **Expected Deliverables**: `event-validator.ts`, `middleware-pipeline.ts`, `priority-dispatcher.ts`, `topic-router.ts`, `metrics-collector.ts`, `dead-letter-queue.ts`.
-* **Dependencies**: M05.
-
-### M07: Sprint 3B Phase 3 — Event Bus IPC Bridges & System Integration
-* **Objective**: Connect Service Worker, Popup, Options, and Content Scripts via IPC Event Bridges, and wire Lifecycle Engine and Diagnostics to the Event Bus.
-* **Expected Deliverables**: `ipc-event-bridge.ts`, `content-script-bridge.ts`, full system wiring.
-* **Dependencies**: M06.
-
-### M08: Sprint 4 — Network Interceptor Engine
-* **Objective**: Intercept XHR/Fetch network traffic non-intrusively and publish network telemetry events to the Event Bus.
-* **Expected Deliverables**: Network Interceptor module, Request/Response telemetry schemas.
-* **Dependencies**: M07.
-
----
-
-# 8. Statistics
+# 5. Milestone Registry Baseline
 
 ```
 ===================================================================
-                   PLATFORM MILESTONE STATISTICS
+             v0.5.0 RELEASED BASELINE STATISTICS
 ===================================================================
  Total Registered Milestones    : 17
- Completed Milestones           : 6  (35.3%)
- In-Progress Milestones         : 0  (0.0%)
- Pending Milestones             : 11 (64.7%)
- Architecture Documents         : 4  (Vision, Sprint 3A SAD, 3A Addendum, Master Index)
- Implementation Builds          : 4  (Sprint 1, Sprint 2, Sprint 2.1, Sprint 3B.1)
- Build Verification Pass Rate   : 100% (Clean build, 0 errors)
- Average Milestone Completion   : 35.3%
+ Completed / Released           : 9  (52.9%)
+ Pending Milestones             : 8  (47.1%)
+ Build Status                   : PASS (Built in 2.33s)
+ Type Check                     : PASS (0 Errors)
+ Test Coverage                  : 11 / 11 Test Suites PASS
+ Current Release Tag            : v0.5.0
 ===================================================================
 ```
-
----
-
-# 9. Document Rules
-
-1. **Permanent Document**: This Master Milestone Index is permanent and MUST NOT be deleted.
-2. **Append-Only History**: Historical records for completed milestones (M00–M05) are immutable. New sprint information MUST be appended chronologically.
-3. **Registry Maintenance**: Update this index after every sprint completion or major architecture phase transition.
