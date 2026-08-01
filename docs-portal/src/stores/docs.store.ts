@@ -557,7 +557,7 @@ export const useDocsStore = defineStore('docs', () => {
       ]
     },
 
-    // PHASE 5: PRODUCTION HARDENING
+    // PHASE 5: PRODUCTION HARDENING (BASELINE v0.5.0 — 4/4 COMPLETED)
     {
       id: 'M15',
       name: 'WP-5.1: Performance Benchmark Framework',
@@ -618,12 +618,14 @@ export const useDocsStore = defineStore('docs', () => {
       reviewStatus: 'Approved',
       notes: 'v0.5.0 Baseline Complete'
     },
+
+    // PHASE 6: RELEASE ENGINEERING (PLANNED — 0/5 COMPLETED)
     {
       id: 'M19',
-      name: 'WP-5.5: Recovery & Resilience Hooks',
-      sprint: 'Sprint 4 (WP-5.5)',
+      name: 'WP-6.1: Recovery & Resilience Hooks',
+      sprint: 'Sprint 5 (WP-6.1)',
       category: 'Platform',
-      phaseGroup: 'Phase 5: Production Hardening',
+      phaseGroup: 'Phase 6: Release Engineering',
       status: 'PLANNED',
       completion: 0,
       date: 'Pending',
@@ -631,14 +633,14 @@ export const useDocsStore = defineStore('docs', () => {
       deliverables: ['Panic Shield Module', 'Recovery Hooks'],
       owner: 'Core Team',
       reviewStatus: 'Pending',
-      notes: 'Roadmap Sprint 4'
+      notes: 'Roadmap Sprint 5'
     },
     {
       id: 'M20',
-      name: 'WP-5.6: Production Certification',
-      sprint: 'Sprint 4 (WP-5.6)',
+      name: 'WP-6.2: Production Build Certification & Signing',
+      sprint: 'Sprint 5 (WP-6.2)',
       category: 'Platform',
-      phaseGroup: 'Phase 5: Production Hardening',
+      phaseGroup: 'Phase 6: Release Engineering',
       status: 'PLANNED',
       completion: 0,
       date: 'Pending',
@@ -646,7 +648,7 @@ export const useDocsStore = defineStore('docs', () => {
       deliverables: ['Release Certification', 'Signed Production Extension Zip'],
       owner: 'DevOps Team',
       reviewStatus: 'Pending',
-      notes: 'Roadmap Sprint 4'
+      notes: 'Roadmap Sprint 5'
     },
 
     // PHASE 6: RELEASE ENGINEERING

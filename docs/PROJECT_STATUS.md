@@ -1,22 +1,28 @@
 # SPPG Companion — Project Status Dashboard
 
+> **Badge**: BASELINE  
+> **Subtitle**: Production Hardening Complete  
+> **Git Baseline**: v0.5.0  
 > **Project Version**: v0.5.0  
-> **Sprint Phase**: Sprint 4 Phase 5 (Production Hardening Complete)  
-> **Target Release**: Production Hardened Event-Driven Enterprise Architecture  
+> **Sprint Phase**: Sprint 4 Phase 5 (Status: BASELINE — 100% Complete)  
+> **Phase 6 Status**: PLANNED (0 / 5 Completed — 0%)  
 
 ---
 
 ## 🚀 Executive & Engineering Summary
 
 ```
+Header Badge            : BASELINE
+Subtitle                : Production Hardening Complete
+Git Baseline            : v0.5.0
 Business Framework      : PRODUCTION
 Architecture            : PRODUCTION READY
 Migration               : COMPLETE (100%)
 Current Sprint          : Sprint 4 (Status: COMPLETE)
-Current Phase           : Phase 5 (Status: COMPLETE)
+Current Phase           : Phase 5 (Status: BASELINE — 100% Complete)
+Phase 5 Completion      : 100% (4 / 4 Completed)
+Phase 6 Status          : PLANNED (0 / 5 Completed — 0%)
 Current Version         : v0.5.0
-Baseline                : Production Hardening Complete
-Overall Progress        : 100% (Sprint 4 Production Hardening Complete)
 Current Runtime         : Business Framework + Production Integration
 Performance Framework   : COMPLETE (WP-5.1 - Passive Microsecond Benchmarking)
 Reliability Framework   : COMPLETE (WP-5.2 - Retry Policy, Timeout Guard, Health Monitor)
@@ -31,21 +37,8 @@ Release Readiness       : READY FOR SPRINT 5 (Phase 6 Release Engineering)
 
 ---
 
-## 📌 Work Package Breakdown
+## 📌 Phase 5 Work Package Breakdown (4 / 4 Completed)
 
-- ✅ **WP-1**: Runtime Publisher Wiring (`COMPLETED` — 100%)
-- ✅ **WP-2**: Dual Publishing & Feature Flags (`COMPLETED` — 100%)
-- ✅ **WP-2.1**: Configuration Hardening (`COMPLETED` — 100%)
-- ✅ **WP-3**: Subscriber Registry Migration (`COMPLETED` — 100%)
-- ✅ **WP-4.1**: Business Framework Core (`COMPLETED` — 100%)
-- ✅ **WP-4.2**: Workspace Business Handler (`COMPLETED` — 100%)
-- ✅ **WP-4.3**: Storage Business Handler (`COMPLETED` — 100%)
-- ✅ **WP-4.4**: Lifecycle Business Handler (`COMPLETED` — 100%)
-- ✅ **WP-4.5**: Shadow Mode Migration & Comparator (`COMPLETED` — 100%)
-- ✅ **WP-4.5.5**: Shadow Validation Campaign & Health Analytics (`COMPLETED` — 100%)
-- ✅ **WP-4.6**: Business-Only Cutover (`COMPLETED` — 100%)
-- ✅ **WP-4.7.1**: ActivityService Runtime Decoupling (`COMPLETED` — 100%)
-- ✅ **WP-4.7.2**: Legacy Adapter & Infrastructure Cleanup (`COMPLETED` — 100%)
 - ✅ **WP-5.1**: Performance Benchmark Framework (`COMPLETED` — 100%)
 - ✅ **WP-5.2**: Reliability & Fault Tolerance Framework (`COMPLETED` — 100%)
 - ✅ **WP-5.3**: Observability & Metrics Platform (`COMPLETED` — 100%)
@@ -53,14 +46,21 @@ Release Readiness       : READY FOR SPRINT 5 (Phase 6 Release Engineering)
 
 ---
 
-## 📈 Overall Sprint 4 Progress
+## 📌 Phase 6 Work Package Breakdown (0 / 5 Completed — PLANNED)
+
+- 📋 **WP-6.1**: Recovery & Resilience Hooks (`PLANNED` — 0%)
+- 📋 **WP-6.2**: Production Build Certification & Signing (`PLANNED` — 0%)
+- 📋 **WP-6.3**: CI/CD Build Matrix Automation (`PLANNED` — 0%)
+- 📋 **WP-6.4**: End-to-End Automated Regression Suite (`PLANNED` — 0%)
+- 📋 **WP-6.5**: MV3 Extension Release Packaging & Store Submission (`PLANNED` — 0%)
+
+---
+
+## 📈 Phase 5 vs Phase 6 Progress
 
 ```
-WP-5.1 Performance Benchmark : ██████████ 100% (Completed)
-WP-5.2 Reliability Framework : ██████████ 100% (Completed)
-WP-5.3 Observability Platform: ██████████ 100% (Completed)
-WP-5.4 Production Integration: ██████████ 100% (Completed)
-Overall Sprint 4 Progress    : ██████████ 100% (Production Hardening Complete)
+Phase 5 (Production Hardening): ██████████ 100% (BASELINE v0.5.0 — 4 / 4 Completed)
+Phase 6 (Release Engineering) : ░░░░░░░░░░ 0%   (PLANNED — 0 / 5 Completed)
 ```
 
 ---
@@ -89,21 +89,17 @@ Observability & Metrics Platform (WP-5.3)
 Production Integration Layer & Runtime Wiring (WP-5.4)
        │
        ▼
-Sprint 4 Phase 5 Production Hardening Complete (v0.5.0)
+Phase 5 Production Hardening Complete (BASELINE v0.5.0)
+       │
+       ▼
+Phase 6 Release Engineering & CI/CD Pipeline (PLANNED)
 ```
 
 ---
 
-## 🔮 Next Target: Sprint 5 — Phase 6 Release Engineering
-
-- **CI/CD Pipeline & Build Automation**: Automated extension build matrix & artifact packaging.
-- **Automated E2E Integration Suite**: Cross-browser verification and regression test suite.
-- **Release Packaging & MV3 Signed Bundle**: Production bundle minification and signed ZIP generation.
-- **Chrome Web Store Submission**: Manifest V3 Store listing metadata & privacy disclosures.
-
----
-
-> **Last Updated**: Sprint 4 Phase 5 Complete (v0.5.0)  
+> **Last Updated**: Phase 5 Baseline v0.5.0  
+> **Badge**: BASELINE  
+> **Subtitle**: Production Hardening Complete  
 > **Repository Status**: Production Ready  
-> **Hardening Status**: Completed (11/11 Test Specs Passing)  
-> **Next Target**: Sprint 5 (Phase 6 Release Engineering)
+> **Phase 5**: 100% Complete (4/4 Completed)  
+> **Next Phase**: Phase 6 Release Engineering (PLANNED - 0/5 Completed)

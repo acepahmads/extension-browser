@@ -2,13 +2,14 @@
 ## SPPG Companion Platform
 
 > **Title**: SPPG Companion Master Roadmap  
-> **Version**: 1.0.0  
-> **Status**: APPROVED  
+> **Version**: v0.5.0  
+> **Status**: BASELINE  
+> **Subtitle**: Production Hardening Complete  
+> **Git Baseline**: v0.5.0  
 > **Author**: Lead Software Architect  
 > **Reviewer**: Enterprise Architecture Board  
 > **Created**: 2026-07-31  
-> **Last Updated**: 2026-07-31  
-> **Next Review**: 2026-08-30  
+> **Last Updated**: 2026-08-02  
 
 ---
 
@@ -23,135 +24,108 @@ The **SPPG Companion Platform** roadmap outlines a phased execution strategy to 
 ### M00: Project Vision & Platform Scope
 - **Objective**: Establish the core product vision, technology stack, and architectural guidelines.
 - **Deliverables**: Technology stack selection (Vue 3, TypeScript, Vite, TailwindCSS, Pinia), Manifest V3 setup.
-- **Dependencies**: None.
-- **Status**: `COMPLETED`
+- **Status**: `COMPLETED` (100%)
 
 ---
 
 ### Sprint 1: Extension Foundation & Base Configuration Layer
 - **Objective**: Build Chrome Extension Manifest V3 core structure, build pipeline, UI layout, and storage adapter.
 - **Deliverables**: Manifest V3, Storage Adapter (`chrome.storage.local` + `localStorage` fallback), Options/Popup UI frame.
-- **Dependencies**: M00.
-- **Status**: `COMPLETED`
+- **Status**: `COMPLETED` (100%)
 
 ---
 
 ### Sprint 2: Browser Lifecycle Engine & Activity Center
 - **Objective**: Monitor browser events in real-time and provide a developer activity console.
 - **Deliverables**: `BrowserLifecycleService`, `TabService`, `NavigationService`, `WindowService`, `ActivityStore`, Activity Center UI.
-- **Dependencies**: Sprint 1.
-- **Status**: `COMPLETED`
+- **Status**: `COMPLETED` (100%)
 
 ---
 
 ### Sprint 2.1: Engine Completion & Enterprise Event Model Refinement
 - **Objective**: Achieve 100% lifecycle event coverage and refine the event payload schema without structural refactoring.
 - **Deliverables**: 24 complete lifecycle events, `sequence`, `sessionId`, `correlationId`, `source`, `severity`, `duration`, Logger success/silent modes, Diagnostics Center 6-component suite, Health Score (0-100%).
-- **Dependencies**: Sprint 2.
-- **Status**: `COMPLETED`
+- **Status**: `COMPLETED` (100%)
 
 ---
 
 ### Sprint 3A: Enterprise Event Bus Architecture Design & Revision
-- **Objective**: Design a high-performance, decoupled event bus architecture to serve as the communication backbone for Sprints 4–12.
+- **Objective**: Design a high-performance, decoupled event bus architecture to serve as the communication backbone.
 - **Deliverables**: Software Architecture Document (SAD), Revision Addendum, Event Envelope v1.0 design, Topic Taxonomy, Schema Registry design, Validator design, Replay Hook design.
-- **Dependencies**: Sprint 2.1.
-- **Status**: `COMPLETED`
+- **Status**: `COMPLETED` (100%)
 
 ---
 
-### Sprint 3B: Enterprise Event Bus Implementation
-- **Objective**: Implement the Event Bus in 3 distinct incremental phases.
-  - **Phase 1 (Core Foundation)**: Event Envelope, `publish()`, `subscribe()`, `once()`, `unsubscribe()`, `broadcast()`, topic model. [`COMPLETED`]
-  - **Phase 2 (Pipeline, Resilience & Metrics)**: Event Validator, Middlewares, Priority Dispatcher, Trie Router, Metrics Collector, Dead Letter Queue (DLQ). [`NEXT SPRINT`]
-  - **Phase 3 (IPC Bridges & Integration)**: Service Worker <-> UI IPC proxies and system wiring. [`PLANNED`]
-- **Dependencies**: Sprint 3A.
-- **Status**: `IN PROGRESS`
+### Sprint 3B: Business Execution Framework & Cutover
+- **Objective**: Implement Event Bus Core (Phase 1), Pipeline/Metrics (Phase 2), Subscriber Layer (Phase 3), and Business Execution Framework (Phase 4).
+- **Deliverables**: `EventBusCore`, `SubscriberRegistry`, `BusinessDispatcher`, `BusinessRegistry`, domain handlers (`Workspace`, `Storage`, `Lifecycle`), Shadow Validation, Business-Only Cutover.
+- **Status**: `COMPLETED` (100%)
 
 ---
 
-### Sprint D0: Engineering Documentation Foundation
-- **Objective**: Establish permanent engineering documentation repository layout and master registers.
-- **Deliverables**: `Master-Roadmap.md`, `Master-Milestone-Index.md`, `Report-Template.md`, milestone completion records (M00 to M06).
-- **Dependencies**: Sprint 3B Phase 1.
-- **Status**: `COMPLETED`
+### Sprint 4 (Phase 5): Production Hardening Suite
+- **Badge**: `BASELINE`
+- **Subtitle**: Production Hardening Complete
+- **Git Baseline**: `v0.5.0`
+- **Phase Completion**: `100%` (4 / 4 Completed)
+- **Status**: `BASELINE`
+- **Work Packages**:
+  - ✅ **WP-5.1**: Performance Benchmark Framework (`src/core/performance/`) — `COMPLETED` (100%)
+  - ✅ **WP-5.2**: Reliability & Fault Tolerance Framework (`src/core/reliability/`) — `COMPLETED` (100%)
+  - ✅ **WP-5.3**: Observability & Metrics Platform (`src/core/observability/`) — `COMPLETED` (100%)
+  - ✅ **WP-5.4**: Production Integration Layer & Runtime Wiring (`src/core/integration/`) — `COMPLETED` (100%)
 
 ---
 
-### Sprint D0.1: Documentation Governance & Standards
-- **Objective**: Establish enterprise governance standards across all repository documentation.
-- **Deliverables**: `CHANGELOG.md`, `VERSION.md`, `Glossary.md`, `Coding-Standards.md`, `CONTRIBUTING.md`, `CONTEXT.md`.
-- **Dependencies**: Sprint D0.
-- **Status**: `COMPLETED`
-
----
-
-### Sprint 4: Network Interceptor Engine
-- **Objective**: Intercept XHR and Fetch HTTP traffic non-intrusively and stream network telemetry to the Event Bus.
-- **Deliverables**: Network Interceptor module, Request/Response telemetry schemas, Correlation ID linking to navigation.
-- **Dependencies**: Sprint 3B.
+### Sprint 5 (Phase 6): Release Engineering & CI/CD Pipeline
 - **Status**: `PLANNED`
+- **Phase Completion**: `0%` (0 / 5 Completed)
+- **Work Packages**:
+  - 📋 **WP-6.1**: Recovery & Resilience Hooks (Automated recovery & worker restart resilience) — `PLANNED` (0%)
+  - 📋 **WP-6.2**: Production Build Certification (Artifact signing & release verification) — `PLANNED` (0%)
+  - 📋 **WP-6.3**: CI/CD Build Matrix Automation — `PLANNED` (0%)
+  - 📋 **WP-6.4**: End-to-End Automated Regression Suite — `PLANNED` (0%)
+  - 📋 **WP-6.5**: MV3 Extension Release Packaging & Web Store Submission — `PLANNED` (0%)
 
 ---
 
-### Sprint 5: Storage Engine & Persistence Adapter
+### Sprint 6: Storage Engine & Persistence Adapter
 - **Objective**: Provide high-capacity persistent event storage and historical log querying.
 - **Deliverables**: IndexedDB adapter, high-performance query service, cache eviction policies.
-- **Dependencies**: Sprint 4.
-- **Status**: `PLANNED`
+- **Status**: `PLANNED` (0%)
 
 ---
 
-### Sprint 6: Developer Console & Inspection Suite
+### Sprint 7: Developer Console & Inspection Suite
 - **Objective**: Build an advanced developer console for network inspection, lifecycle filtering, and telemetry debugging.
-- **Deliverables**: Network Inspector UI, advanced filter panels, state inspection tools.
-- **Dependencies**: Sprint 5.
-- **Status**: `PLANNED`
+- **Status**: `PLANNED` (0%)
 
 ---
 
-### Sprint 7: Discovery Engine & Auto-Telemetry
+### Sprint 8: Discovery Engine & Auto-Telemetry
 - **Objective**: Automatically discover API endpoints, route patterns, and target application behaviors.
-- **Deliverables**: Auto-discovery module, route pattern extractor.
-- **Dependencies**: Sprint 6.
-- **Status**: `PLANNED`
+- **Status**: `PLANNED` (0%)
 
 ---
 
-### Sprint 8: Endpoint Registry & API Contract Catalog
+### Sprint 9: Endpoint Registry & API Contract Catalog
 - **Objective**: Maintain a centralized catalog of discovered endpoints, request parameters, and response contracts.
-- **Deliverables**: Endpoint Registry UI & Service, contract schema validator.
-- **Dependencies**: Sprint 7.
-- **Status**: `PLANNED`
+- **Status**: `PLANNED` (0%)
 
 ---
 
-### Sprint 9: Mapping Engine & Schema Inspector
+### Sprint 10: Mapping Engine & Schema Inspector
 - **Objective**: Map frontend telemetry data models to backend API schemas visually and algorithmically.
-- **Deliverables**: Visual schema mapper, field transformation inspector.
-- **Dependencies**: Sprint 8.
-- **Status**: `PLANNED`
+- **Status**: `PLANNED` (0%)
 
 ---
 
-### Sprint 10: Replay & Export Engine
+### Sprint 11: Replay & Export Engine
 - **Objective**: Capture, export (HAR/JSON), and replay session traffic for debugging and regression testing.
-- **Deliverables**: Traffic recorder, HAR Exporter, Replay Engine using Replay Hook interface.
-- **Dependencies**: Sprint 9.
-- **Status**: `PLANNED`
+- **Status**: `PLANNED` (0%)
 
 ---
 
-### Sprint 11: AI Analyzer Engine & Anomaly Detection
+### Sprint 12: AI Analyzer Engine & Anomaly Detection
 - **Objective**: Tap into the Event Bus wildcard stream to detect security anomalies, performance bottlenecks, and user friction patterns automatically.
-- **Deliverables**: AI Telemetry Tap, Anomaly Detector, Insight Generator.
-- **Dependencies**: Sprint 10.
-- **Status**: `PLANNED`
-
----
-
-### Sprint 12: Backend Synchronization & Enterprise Gateway
-- **Objective**: Synchronize local telemetry, API catalogs, and AI insights with enterprise central management backends.
-- **Deliverables**: Enterprise Gateway sync engine, Circuit Breaker fault tolerance, multi-tenant auth.
-- **Dependencies**: Sprint 11.
-- **Status**: `PLANNED`
+- **Status**: `PLANNED` (0%)

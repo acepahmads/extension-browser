@@ -2,13 +2,15 @@
 ## SPPG Companion Platform — Executive Milestone Registry
 
 > **Title**: SPPG Companion Master Milestone Index  
+> **Badge**: BASELINE  
+> **Subtitle**: Production Hardening Complete  
+> **Git Baseline**: v0.5.0  
 > **Version**: v0.5.0  
 > **Status**: RELEASED  
 > **Author**: Principal Software Architect  
 > **Reviewer**: Enterprise Architecture Board  
 > **Created**: 2026-07-31  
 > **Last Updated**: 2026-08-02  
-> **Baseline**: v0.5.0 (Production Hardening Complete)  
 
 ---
 
@@ -19,8 +21,9 @@
 | **Project Name** | SPPG Companion Extension (`BGN-Extension`) |
 | **Current Platform Version** | v0.5.0 (Sprint 4 Phase 5 Production Hardening Complete) |
 | **Architecture Style** | Event-Driven Micro-Kernel Extension Architecture (MV3) |
-| **Current Sprint** | Sprint 4 (Production Hardening & Runtime Integration) |
-| **Current Milestone** | **M08**: Sprint 4 — Production Hardening & Runtime Integration |
+| **Current Baseline Tag** | `v0.5.0` |
+| **Phase 5 Status** | **BASELINE (100% - 4 / 4 Completed)** |
+| **Phase 6 Status** | **PLANNED (0% - 0 / 5 Completed)** |
 | **Current Status** | **RELEASED** |
 | **Overall Completion** | **52.9%** |
 
@@ -54,9 +57,9 @@
     ↓
   [M07.1] Sprint 3B Phase 4: Business Execution Framework (COMPLETED)
     ↓
-  [M08] Sprint 4 Phase 5: Production Hardening & Runtime Wiring (COMPLETED - v0.5.0 RELEASED) <-- CURRENT
+  [M08] Sprint 4 Phase 5: Production Hardening Suite (BASELINE v0.5.0 - 4 / 4 COMPLETED) <-- CURRENT BASELINE
     ↓
-  [M09] Sprint 5: Phase 6 Release Engineering & CI/CD Pipeline (NEXT MILESTONE)
+  [M09] Sprint 5 Phase 6: Release Engineering & CI/CD Pipeline (PLANNED - 0 / 5 COMPLETED)
     ↓
   [M10] Sprint 6: Storage Engine & Persistence Adapter
 ```
@@ -78,38 +81,56 @@
 | **M06** | Event Bus Pipeline & Metrics | Sprint 3B.2 | `COMPLETED` | Approved | Verified | Verified | Clean | Approved | 100% | Core Team | Approved | Validator, Middlewares, Priority Dispatcher, Metrics |
 | **M07** | Event Bus Subscriber Layer | Sprint 3B.3 | `COMPLETED` | Approved | Verified | Verified | Clean | Approved | 100% | Core Team | Approved | WP-1, WP-2, WP-2.1, WP-3 Stages 1-5 Complete |
 | **M07.1** | Business Execution Framework | Sprint 3B.4 | `COMPLETED` | Approved | Verified | Verified | Clean | Approved | 100% | Core Team | Approved | WP-4 Stages 1-7.2 Complete (100%) |
-| **M08** | Production Hardening Suite | Sprint 4 | `RELEASED` | Approved | Verified | Verified | Clean | Approved | 100% | Core Team | Approved | WP-5.1 to WP-5.4 Complete — Git Tag v0.5.0 Baseline |
-| **M09** | Release Engineering & CI/CD | Sprint 5 | `PLANNED` | Planned | Pending | Pending | Pending | Draft | 0% | DevOps Team | Pending | Build Automation, E2E Testing, Release Packaging |
+| **M08** | Production Hardening Suite | Sprint 4 | `BASELINE` | Approved | Verified | Verified | Clean | Approved | 100% | Core Team | Approved | WP-5.1 to WP-5.4 Complete (4 / 4) — Git Baseline v0.5.0 |
+| **M09** | Release Engineering & CI/CD | Sprint 5 | `PLANNED` | Planned | Pending | Pending | Pending | Draft | 0% | DevOps Team | Pending | WP-6.1 to WP-6.5 Planned (0 / 5 Completed) |
 | **M10** | Storage Engine & Persistence | Sprint 6 | `PLANNED` | Planned | Pending | Pending | Pending | Draft | 0% | Storage Team | Pending | IndexedDB / Cache Storage |
 
 ---
 
-# 4. Milestone Summary
+# 4. Phase Breakdown
 
-### M08: Sprint 4 — Production Hardening & Integration (Baseline v0.5.0)
-* **Objective**: Build enterprise-grade Performance Benchmark Framework (WP-5.1), Reliability & Fault Tolerance Framework (WP-5.2), Observability & Metrics Platform (WP-5.3), and Production Integration Layer (WP-5.4).
-* **Major Deliverables**:
-  - `src/core/performance/` (BenchmarkService, microsecond latency timing, memory profiling)
-  - `src/core/reliability/` (RetryPolicyEngine, TimeoutGuard, FailureDetector, HealthMonitor)
-  - `src/core/observability/` (ObservabilityService, HealthDashboard 7-widget model, TelemetryService in-memory trends)
-  - `src/core/integration/` (IntegrationPipeline, IntegrationMiddleware, runtime feature flags, zero-bypass fallback)
-  - Production runtime wiring (`BusinessDispatcher` delegation to `IntegrationMiddleware`)
-* **Status**: **100% COMPLETE & RELEASED (v0.5.0)**. 11/11 Test Suites Passing.
+### Phase 5: Production Hardening Suite
+- **Badge**: `BASELINE`
+- **Version**: `v0.5.0`
+- **Subtitle**: Production Hardening Complete
+- **Git Baseline**: `v0.5.0`
+- **Phase Completion**: `100%` (4 / 4 Completed)
+- **Status**: `BASELINE`
+- **Included Work Packages**:
+  1. ✅ **WP-5.1**: Performance Benchmark Framework (`src/core/performance/`) — `COMPLETED` (100%)
+  2. ✅ **WP-5.2**: Reliability & Fault Tolerance Framework (`src/core/reliability/`) — `COMPLETED` (100%)
+  3. ✅ **WP-5.3**: Observability & Metrics Platform (`src/core/observability/`) — `COMPLETED` (100%)
+  4. ✅ **WP-5.4**: Production Integration Layer & Runtime Wiring (`src/core/integration/`) — `COMPLETED` (100%)
 
 ---
 
-# 5. Milestone Registry Baseline
+### Phase 6: Release Engineering & Build Automation
+- **Badge**: `PLANNED`
+- **Phase Completion**: `0%` (0 / 5 Completed)
+- **Status**: `PLANNED`
+- **Included Work Packages**:
+  1. 📋 **WP-6.1**: Recovery & Resilience Hooks — `PLANNED` (0%)
+  2. 📋 **WP-6.2**: Production Certification & Signing — `PLANNED` (0%)
+  3. 📋 **WP-6.3**: CI/CD Build Matrix Automation — `PLANNED` (0%)
+  4. 📋 **WP-6.4**: E2E Integration & Regression Suite — `PLANNED` (0%)
+  5. 📋 **WP-6.5**: MV3 Release Packaging & Web Store Submission — `PLANNED` (0%)
+
+---
+
+# 5. Statistics
 
 ```
 ===================================================================
              v0.5.0 RELEASED BASELINE STATISTICS
 ===================================================================
  Total Registered Milestones    : 17
- Completed / Released           : 9  (52.9%)
- Pending Milestones             : 8  (47.1%)
+ Phase 5 Completion             : 100% (4 / 4 Completed)
+ Phase 6 Status                 : PLANNED (0 / 5 Completed - 0%)
  Build Status                   : PASS (Built in 2.33s)
  Type Check                     : PASS (0 Errors)
  Test Coverage                  : 11 / 11 Test Suites PASS
  Current Release Tag            : v0.5.0
+ Header Badge                   : BASELINE
+ Subtitle                       : Production Hardening Complete
 ===================================================================
 ```

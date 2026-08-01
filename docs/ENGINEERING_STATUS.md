@@ -1,8 +1,10 @@
 # SPPG Companion — Engineering Execution Status Dashboard
 
-> **Sprint**: Sprint 4 Phase 5 Complete  
-> **Milestone**: M15–M18 (Production Hardening Complete)  
+> **Header Badge**: BASELINE  
+> **Subtitle**: Production Hardening Complete  
 > **Git Baseline**: `v0.5.0`  
+> **Sprint Phase**: Phase 5 Baseline (100% — 4 / 4 Completed)  
+> **Phase 6 Status**: PLANNED (0% — 0 / 5 Completed)  
 > **Last Updated**: 2026-08-02  
 > **Author**: Lead Software Architect  
 
@@ -12,12 +14,13 @@
 
 | Architecture Layer | Current Status | Repository Evidence |
 | :--- | :---: | :--- |
+| **Header Badge** | `BASELINE` | Approved repository baseline `v0.5.0`. |
+| **Subtitle** | `Production Hardening Complete` | Phase 5 Production Hardening completed (4 / 4 Work Packages). |
+| **Git Baseline** | `v0.5.0` | Tagged release baseline pushed to `origin/master`. |
+| **Phase 5 Completion**| `100% (4 / 4)` | WP-5.1, WP-5.2, WP-5.3, WP-5.4 completed. |
+| **Phase 6 Status** | `PLANNED (0 / 5)` | Release Engineering & CI/CD pipeline planned (0% completed). |
 | **Architecture** | `COMPLETE` | Production-ready event-driven architecture with clean isolation layers. |
 | **Business Framework** | `COMPLETE` | Sole authoritative execution engine (`Workspace`, `Storage`, `Lifecycle` domain handlers). |
-| **Business Migration** | `COMPLETE` | 100% domain coverage across 15 active EventBus topics. |
-| **Shadow Validation** | `COMPLETE` | Non-blocking parity comparator verified with 100% health score. |
-| **Business Cutover** | `COMPLETE` | Authoritative production execution cutover verified. |
-| **Legacy Cleanup** | `COMPLETE` | Obsolete bridge wrappers, migration comments, and dead imports eliminated. |
 | **Performance Benchmark** | `COMPLETE` | WP-5.1 passive benchmark suite (`BenchmarkService`, microsecond timing, layer breakdown). |
 | **Reliability Framework** | `COMPLETE` | WP-5.2 resilience engine (`RetryPolicyEngine`, `TimeoutGuard`, `FailureDetector`, `HealthMonitor`). |
 | **Observability Platform** | `COMPLETE` | WP-5.3 telemetry engine (`ObservabilityService`, `HealthDashboard`, `TelemetryService` trends). |
@@ -30,16 +33,19 @@
 | **Build Status** | `PASS` | Vite production bundle compiled cleanly in 2.33s. |
 | **Type Check** | `PASS` | `vue-tsc --noEmit` passed with 0 errors. |
 | **Test Suites** | `11 / 11 PASS` | 100% pass rate across all unit, benchmark, reliability, observability, and integration specs. |
-| **Git Baseline** | `v0.5.0` | Production Hardening Complete. |
 
 ---
 
-## 🛠️ Verification Metrics
+## 🛠️ Phase 5 vs Phase 6 Breakdown
 
-- **Publisher Audit**: `13 / 13 Runtime Publishers Wired` (100% Coverage)
-- **Active EventBus Handlers**: `15 Active Topic Handlers` across Analytics, Metrics, Workspace, Storage, and Lifecycle domains
-- **Business Framework Handlers**: `3 Domain Handlers` (`Workspace`, `Storage`, `Lifecycle`)
-- **Automated Test Suites**: `11 / 11 Verification Suites Passed` (100% Success Rate)
-- **Type-Check**: `PASSED` (0 errors via `vue-tsc --noEmit`)
-- **Build Status**: `PASS` (Built in 2.33s via `vite build`)
-- **Current Baseline**: `v0.5.0 (Production Hardening Complete)`
+- **Phase 5 (Production Hardening)**: `100% Completed (4 / 4 Work Packages)`
+  - WP-5.1 Performance Benchmark Framework (`COMPLETE`)
+  - WP-5.2 Reliability & Fault Tolerance (`COMPLETE`)
+  - WP-5.3 Observability & Metrics Platform (`COMPLETE`)
+  - WP-5.4 Production Integration & Runtime Wiring (`COMPLETE`)
+- **Phase 6 (Release Engineering)**: `0% Completed (0 / 5 Work Packages - PLANNED)`
+  - WP-6.1 Recovery & Resilience Hooks (`PLANNED`)
+  - WP-6.2 Production Build Certification & Signing (`PLANNED`)
+  - WP-6.3 CI/CD Build Matrix Automation (`PLANNED`)
+  - WP-6.4 End-to-End Automated Regression Suite (`PLANNED`)
+  - WP-6.5 MV3 Extension Release Packaging & Store Submission (`PLANNED`)
