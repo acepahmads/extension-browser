@@ -1,0 +1,47 @@
+name: SPPG Companion CI/CD Release Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  quality-gates-and-release:
+    name: Execute Quality Gates & Build Release Artifacts
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Project Dependencies
+        run: npm ci
+
+      - name: Execute Type Check Quality Gate
+        run: npm run type-check
+
+      - name: Execute Production Build Quality Gate
+        run: npm run build
+
+      - name: Run Quality Gates Matrix & Build Release Bundle
+        run: npx tsx scripts/release/build-release.ts
+
+      - name: Upload Release Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sppg-companion-release-${{ github.sha }}
+          path: |
+            dist-release/extension.zip
+            dist-release/build-report.json
+            dist-release/release-notes.md
+          retention-days: 30

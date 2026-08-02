@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "vue-tsc --noEmit && vite build",
+    "build:release": "npx tsx scripts/release/build-release.ts",
+    "ci:quality-gates": "npx tsx scripts/ci/run-quality-gates.ts",
+    "release:rollback": "git tag -d $(git describe --tags --abbrev=0) && git push --delete origin $(git describe --tags --abbrev=0)",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .ts,.vue",
     "format": "prettier --write \"src/**/*.{ts,vue,css,html,json}\""
