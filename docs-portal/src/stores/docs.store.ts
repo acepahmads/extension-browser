@@ -678,132 +678,12 @@ export const useDocsStore = defineStore('docs', () => {
     }
   ]);
 
-  // Executive Dashboard Project Metrics (Calculated Dynamically)
-  const projectInfo = computed(() => {
-    const totalDocs = rawDocuments.value.length;
-    const reportDocs = reportsList.value.length;
-    const completedMilestonesCount = milestones.value.filter(m => m.status === 'COMPLETED' || m.status === 'ARCHIVED' || m.status === 'BASELINE').length;
+  // Normalized Metadata Hydration from MetadataEngine (Housekeeping 6)
+  const normalizedMetadata = computed(() => engine.getNormalizedMetadata());
 
-    return {
-      projectName: 'SPPG Companion Platform (BGN-Extension)',
-      version: 'v1.0.0',
-      currentSprint: 'Sprint 5',
-      currentMilestone: 'Version 1.0 General Availability (GA) Certified',
-      currentPhaseGroup: 'Phase 6 – Release Engineering',
-      currentModule: 'scripts/operations/release-operations.ts',
-      nextSprint: 'Sprint 6 (Storage Engine & Persistence Adapter)',
-      architectureStatus: 'Complete',
-      repositoryStatus: '🟢 READY FOR GENERAL AVAILABILITY',
-      currentBaseline: 'v1.0.0',
-      repositoryHealth: 'Excellent',
-      buildStatus: 'PASS',
-      typeCheckStatus: 'PASS',
-      testingStatus: '11 / 11 PASS',
-      testSuitesStatus: '11 / 11 PASS',
-      overallCompletion: 100.0,
-      totalMilestones: milestones.value.length,
-      completedMilestones: completedMilestonesCount,
-      remainingMilestones: milestones.value.length - completedMilestonesCount,
-      healthScore: 100,
-      securityScore: 100,
-      distributionScore: 100,
-      gaScore: 100,
-      adrCount: adrList.value.length,
-      reportCount: reportDocs,
-      testCoverage: '100% Core Pipeline, Benchmark, Reliability & Observability',
-
-      progressSummary: {
-        foundation: 100,
-        architecture: 100,
-        documentation: 100,
-        businessFramework: 100,
-        productionHardening: 100,
-        releaseEngineering: 100,
-        gaRelease: 100,
-        overallProgress: 100
-      },
-
-      healthCard: {
-        architecture: 'Complete',
-        businessFramework: 'Complete',
-        performanceFramework: 'Complete',
-        reliabilityFramework: 'Complete',
-        observabilityPlatform: 'Complete',
-        integrationLayer: 'Complete',
-        runtimeWiring: 'Complete',
-        repositoryHealth: 'Excellent',
-        technicalDebt: 'Low',
-        build: 'PASS',
-        typeCheck: 'PASS',
-        tests: '11 / 11 PASS'
-      },
-
-      releaseTimeline: [
-        { version: 'v0.1.0', label: 'Foundation', status: 'Completed' },
-        { version: 'v0.2.0', label: 'EventBus', status: 'Completed' },
-        { version: 'v0.3.0', label: 'Business Framework', status: 'Completed' },
-        { version: 'v0.4.0', label: 'Migration', status: 'Completed' },
-        { version: 'v0.5.0', label: 'Production Hardening', status: 'BASELINE' },
-        { version: 'v0.6.4', label: 'Release Engineering', status: 'Completed' },
-        { version: 'v0.7.0', label: 'Beta', status: 'Completed' },
-        { version: 'v0.9.0', label: 'Release Candidate', status: 'Completed' },
-        { version: 'v1.0.0', label: 'General Availability', status: 'BASELINE' }
-      ],
-      
-      buildMetrics: {
-        status: 'PASSING',
-        latestBuild: '20260802.1',
-        avgBuildTime: '1.61s',
-        successfulBuilds: '100%',
-        failedBuilds: 0,
-        warnings: 0,
-        errors: 0
-      },
-
-      testMetrics: {
-        totalTests: 11,
-        passed: 11,
-        failed: 0,
-        skipped: 0,
-        unitTests: 6,
-        integrationTests: 5,
-        coverage: '100% Core Pipeline & Hardening Suites'
-      },
-
-      codeMetrics: {
-        totalSourceFiles: 42,
-        vueComponents: 14,
-        typeScriptFiles: 32,
-        interfaces: 35,
-        classes: 18,
-        modules: 14,
-        stores: 2,
-        routes: 10
-      },
-
-      docsMetrics: {
-        docsCoverage: '100%',
-        markdownFiles: totalDocs,
-        reportsCount: reportDocs,
-        milestonesCount: 26,
-        architectureDocsCount: 6,
-        pagesCount: 10,
-        lastUpdated: '2026-08-02'
-      },
-
-      healthMetrics: {
-        architectureScore: 100,
-        documentationScore: 100,
-        buildScore: 100,
-        testingScore: 100,
-        coverageScore: 100,
-        techDebtScore: 0,
-        adrScore: 100,
-        sprintScore: 100,
-        overallHealth: 100
-      }
-    };
-  });
+  const projectInfo = computed(() => normalizedMetadata.value.projectInfo);
+  const phases = computed(() => normalizedMetadata.value.phases);
+  const versionTimeline = computed(() => normalizedMetadata.value.versionTimeline);
 
   // Dynamic Search Index
   const searchResults = computed(() => {
@@ -827,41 +707,6 @@ export const useDocsStore = defineStore('docs', () => {
       document.documentElement.classList.add('light-mode');
     }
   };
-
-  // Dynamic 7-Phase Product Hierarchy Breakdown
-  const phases = computed(() => {
-    const groups = [
-      { id: 1, name: 'Phase 1: Foundation (M00 - M03)', groupKey: 'Phase 1: Foundation', desc: 'Core Extension Scaffolding & Lifecycle Engine', badge: 'COMPLETED', badgeClass: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20', versionTag: 'v0.1.0' },
-      { id: 2, name: 'Phase 2: Architecture (M04 - M05)', groupKey: 'Phase 2: Architecture', desc: 'Enterprise Event Bus Architecture & SAD', badge: 'COMPLETED', badgeClass: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20', versionTag: 'v0.2.0' },
-      { id: 3, name: 'Phase 3: Documentation (M07 - M11)', groupKey: 'Phase 3: Documentation', desc: 'Governance, Metadata Engine & Portal v1.0', badge: 'COMPLETED', badgeClass: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20', versionTag: 'v0.3.0' },
-      { id: 4, name: 'Phase 4: Business Framework', groupKey: 'Phase 4: Business Framework', desc: 'Business Framework Migration Complete (13 Work Packages Finished)', badge: 'ARCHIVED', badgeClass: 'bg-teal-500/15 text-teal-300 border-teal-500/30', versionTag: 'v0.4.0' },
-      { id: 5, name: 'Phase 5: Production Hardening', groupKey: 'Phase 5: Production Hardening', desc: 'Production Hardening Complete (Benchmark, Reliability, Observability, Production Integration, Runtime Wiring)', badge: 'BASELINE', badgeClass: 'bg-blue-500/20 text-blue-300 border-blue-500/30', versionTag: 'v0.5.0' },
-      { id: 6, name: 'Phase 6: Release Engineering', groupKey: 'Phase 6: Release Engineering', desc: 'CI/CD Pipeline • Release Management • Distribution Packaging • Security & Signing • GA Operations', badge: 'COMPLETED', badgeClass: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20', versionTag: 'v0.6.4' },
-      { id: 7, name: 'Phase 7: Version 1.0 Release (GA)', groupKey: 'Phase 7: Version 1.0 Release (GA)', desc: 'Version 1.0 General Availability Final Release Certified', badge: 'GENERAL AVAILABILITY', badgeClass: 'bg-purple-500/20 text-purple-300 border-purple-500/30 font-bold', versionTag: 'v1.0.0' }
-    ];
-
-    return groups.map(g => {
-      const items = milestones.value.filter(m => m.phaseGroup === g.groupKey);
-      const completed = items.filter(m => m.status === 'COMPLETED' || m.status === 'ARCHIVED' || m.status === 'BASELINE').length;
-      return {
-        ...g,
-        totalMilestones: g.id === 4 ? 13 : (g.id === 5 ? 4 : (items.length > 0 ? items.length : 1)),
-        completedMilestones: g.id === 4 ? 13 : (g.id === 5 ? 4 : (items.length > 0 ? completed : 1)),
-        progress: 100
-      };
-    });
-  });
-
-  // Dynamic Version Timeline List
-  const versionTimeline = computed(() => [
-    { version: 'v0.1.0', label: 'Foundation', status: 'COMPLETED', badgeClass: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
-    { version: 'v0.2.0', label: 'EventBus', status: 'COMPLETED', badgeClass: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
-    { version: 'v0.3.0', label: 'Business Fwk', status: 'COMPLETED', badgeClass: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
-    { version: 'v0.4.0', label: 'Migration', status: 'ARCHIVED', badgeClass: 'bg-teal-500/15 text-teal-300 border-teal-500/30' },
-    { version: 'v0.5.0', label: 'Hardening', status: 'BASELINE', badgeClass: 'bg-blue-500/20 text-blue-300 border-blue-500/30' },
-    { version: 'v0.6.4', label: 'Release Eng', status: 'COMPLETED', badgeClass: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
-    { version: 'v1.0.0', label: 'General Availability', status: 'GA CERTIFIED', badgeClass: 'bg-purple-500/20 text-purple-300 border-purple-500/30 font-bold ring-2 ring-purple-500/40' }
-  ]);
 
   // Dynamic Sprint Milestone List
   const sprints = computed(() => [
