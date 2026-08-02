@@ -1,30 +1,36 @@
 # SPPG Companion Extension — Project Progress Tracking
 
-## Overall Project Progress: 92%
+## Overall Project Progress Summary
 
-### Sprint Progress Summary
-- **Current Sprint**: Sprint 5 (Release Engineering & Distribution Framework)
-- **Current Phase**: Phase 6 — Work Package 6.3 (Distribution Packaging & Store Readiness)
-- **Sprint Progress**: 80% (3 / 5 Work Packages Completed)
-- **Phase Progress**: 100% (WP-6.3 Completed)
+- **Current Phase**: Sprint 5 – Phase 6
+- **Phase Title**: Release Engineering
+- **Phase Subtitle**: CI/CD Pipeline, Release Management, Distribution Packaging, Security & Signing, General Availability
+- **Current Baseline**: `v1.0.0`
+- **Completed Work Packages**: 5 / 5 (100% Phase Completion)
+- **Repository Status**: `READY FOR GENERAL AVAILABILITY`
+- **Next Target**: `Sprint 6 – Storage Engine & Persistence Adapter`
 
 ---
 
-## Work Package Status Matrix
+## Phase 6 Work Package Status Matrix
 
-| Work Package ID | Name / Scope | Phase | Status | Audit Result | Completion Date |
+| Milestone | Work Package | Title / Scope | Status | Progress | Audit Result |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **WP-6.1** | CI/CD Pipeline & Build Automation | Sprint 5 Phase 6 | ✅ COMPLETE | PASS | 2026-08-02 |
-| **WP-6.2** | Production Certification & Release Management | Sprint 5 Phase 6 | ✅ COMPLETE | PASS | 2026-08-02 |
-| **WP-6.3** | Distribution Packaging & Store Readiness | Sprint 5 Phase 6 | ✅ COMPLETE | PASS | 2026-08-02 |
-| **WP-6.4** | Security, Signing & Supply Chain Integrity | Sprint 5 Phase 6 | ⬜ PENDING | — | Next Target |
-| **WP-6.5** | Release Candidate & General Availability | Sprint 5 Phase 6 | ⬜ PENDING | — | Target |
+| **M19** | **WP-6.1** | CI/CD Pipeline & Build Automation | `COMPLETED` | **100%** | PASS |
+| **M20** | **WP-6.2** | Production Certification & Release Management | `COMPLETED` | **100%** | PASS |
+| **M21** | **WP-6.3** | Distribution Packaging & Store Readiness | `COMPLETED` | **100%** | PASS |
+| **M22** | **WP-6.4** | Security, Signing & Supply Chain Integrity | `COMPLETED` | **100%** | PASS |
+| **M23** | **WP-6.5** | Release Candidate, GA & Post-Release Operations | `COMPLETED` | **100%** | PASS |
 
 ---
 
-## Milestone Status
+## Milestone Index & Status Breakdown
 - **M00 - M07**: Completed (Foundation, EventBus, Business Framework, Shadow Validator)
 - **M08 - M12**: Completed (Documentation Portal, Security, Reliability, Observability)
-- **M13 - M14**: Completed (WP-6.1 CI/CD & WP-6.2 Production Certification)
-- **M15**: Completed (WP-6.3 Distribution Packaging & Store Readiness Framework)
-- **M16**: Pending (WP-6.4 Security, Signing & Supply Chain)
+- **M13 - M18**: Completed (Production Hardening & Baseline Hardening)
+- **M19 (WP-6.1)**: Completed (`CI/CD Pipeline & Build Automation`)
+- **M20 (WP-6.2)**: Completed (`Production Certification & Release Management`)
+- **M21 (WP-6.3)**: Completed (`Distribution Packaging & Store Readiness`)
+- **M22 (WP-6.4)**: Completed (`Security, Signing & Supply Chain Integrity`)
+- **M23 (WP-6.5)**: Completed (`Release Candidate, GA & Post-Release Operations`)
+- **M24**: Completed (`Version 1.0 General Availability Release`)

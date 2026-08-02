@@ -2,10 +2,10 @@
 ## SPPG Companion Platform
 
 > **Title**: SPPG Companion Master Roadmap  
-> **Version**: v0.5.0  
-> **Status**: BASELINE  
-> **Subtitle**: Production Hardening Complete  
-> **Git Baseline**: v0.5.0  
+> **Version**: v0.6.3  
+> **Status**: CURRENT  
+> **Subtitle**: Release Engineering (60% Complete - 3 / 5 Work Packages Finished)  
+> **Git Baseline**: v0.6.3  
 > **Author**: Lead Software Architect  
 > **Reviewer**: Enterprise Architecture Board  
 > **Created**: 2026-07-31  
@@ -77,55 +77,21 @@ The **SPPG Companion Platform** roadmap outlines a phased execution strategy to 
 
 ---
 
-### Sprint 5 (Phase 6): Release Engineering & CI/CD Pipeline
-- **Status**: `PLANNED`
-- **Phase Completion**: `0%` (0 / 5 Completed)
+### Sprint 5 (Phase 6): Release Engineering
+- **Status**: `CURRENT`
+- **Phase Completion**: `60%` (3 / 5 Completed)
+- **Git Baseline**: `v0.6.3`
+- **Subtitle**: CI/CD Pipeline, Release Management, Distribution Packaging, Security & Signing, General Availability
 - **Work Packages**:
-  - 📋 **WP-6.1**: Recovery & Resilience Hooks (Automated recovery & worker restart resilience) — `PLANNED` (0%)
-  - 📋 **WP-6.2**: Production Build Certification (Artifact signing & release verification) — `PLANNED` (0%)
-  - 📋 **WP-6.3**: CI/CD Build Matrix Automation — `PLANNED` (0%)
-  - 📋 **WP-6.4**: End-to-End Automated Regression Suite — `PLANNED` (0%)
-  - 📋 **WP-6.5**: MV3 Extension Release Packaging & Web Store Submission — `PLANNED` (0%)
+  - ✅ **M19 (WP-6.1)**: CI/CD Pipeline & Build Automation — `COMPLETED` (100%)
+  - ✅ **M20 (WP-6.2)**: Production Certification & Release Management — `COMPLETED` (100%)
+  - ✅ **M21 (WP-6.3)**: Distribution Packaging & Store Readiness — `COMPLETED` (100%)
+  - 📋 **M22 (WP-6.4)**: Security, Signing & Supply Chain Integrity — `PLANNED` (0%)
+  - 📋 **M23 (WP-6.5)**: Release Candidate, GA & Post-Release Operations — `PLANNED` (0%)
 
 ---
 
 ### Sprint 6: Storage Engine & Persistence Adapter
 - **Objective**: Provide high-capacity persistent event storage and historical log querying.
 - **Deliverables**: IndexedDB adapter, high-performance query service, cache eviction policies.
-- **Status**: `PLANNED` (0%)
-
----
-
-### Sprint 7: Developer Console & Inspection Suite
-- **Objective**: Build an advanced developer console for network inspection, lifecycle filtering, and telemetry debugging.
-- **Status**: `PLANNED` (0%)
-
----
-
-### Sprint 8: Discovery Engine & Auto-Telemetry
-- **Objective**: Automatically discover API endpoints, route patterns, and target application behaviors.
-- **Status**: `PLANNED` (0%)
-
----
-
-### Sprint 9: Endpoint Registry & API Contract Catalog
-- **Objective**: Maintain a centralized catalog of discovered endpoints, request parameters, and response contracts.
-- **Status**: `PLANNED` (0%)
-
----
-
-### Sprint 10: Mapping Engine & Schema Inspector
-- **Objective**: Map frontend telemetry data models to backend API schemas visually and algorithmically.
-- **Status**: `PLANNED` (0%)
-
----
-
-### Sprint 11: Replay & Export Engine
-- **Objective**: Capture, export (HAR/JSON), and replay session traffic for debugging and regression testing.
-- **Status**: `PLANNED` (0%)
-
----
-
-### Sprint 12: AI Analyzer Engine & Anomaly Detection
-- **Objective**: Tap into the Event Bus wildcard stream to detect security anomalies, performance bottlenecks, and user friction patterns automatically.
 - **Status**: `PLANNED` (0%)

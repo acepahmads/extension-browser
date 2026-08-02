@@ -12,23 +12,23 @@
             </span>
             <!-- Small Repository Status Chips -->
             <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              🟢 Production Ready
+              {{ docsStore.projectInfo.repositoryStatus }}
             </span>
             <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              Build PASS
+              Build {{ docsStore.projectInfo.buildStatus }}
             </span>
             <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              Type Check PASS
+              Type Check {{ docsStore.projectInfo.typeCheckStatus }}
             </span>
             <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20">
-              11 / 11 Tests
+              {{ docsStore.projectInfo.testSuitesStatus }}
             </span>
           </div>
           <h1 class="text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight">
             {{ docsStore.projectInfo.projectName }}
           </h1>
           <p class="text-slate-400 text-sm max-w-2xl">
-            Event-Driven Micro-Kernel Extension Architecture. Sprint 4 Hardening Baseline (v0.5.0) Complete. Entering Sprint 5 – Phase 6 Release Engineering.
+            Event-Driven Micro-Kernel Extension Architecture. Release Engineering Baseline ({{ docsStore.projectInfo.currentBaseline }}) Active. Phase 6 Completion: {{ docsStore.projectInfo.progressSummary.releaseEngineering }}%.
           </p>
         </div>
 
@@ -38,14 +38,14 @@
           <div class="p-4 rounded-2xl bg-slate-950/70 border border-blue-500/30 space-y-2 min-w-[210px]">
             <div class="flex items-center justify-between text-slate-400">
               <span class="text-[10px] uppercase font-bold text-slate-300">CURRENT BASELINE</span>
-              <span class="font-bold text-blue-400">v0.5.0</span>
+              <span class="font-bold text-blue-400">{{ docsStore.projectInfo.currentBaseline }}</span>
             </div>
             <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700">
               <div class="h-full bg-blue-500 rounded-full transition-all duration-500" style="width: 100%"></div>
             </div>
             <div class="flex items-center justify-between text-[11px] text-slate-400">
-              <span>Hardening Complete</span>
-              <span class="text-blue-400 font-bold">4 / 4 Done</span>
+              <span>Phase 6 Progress</span>
+              <span class="text-blue-400 font-bold">3 / 5 Done ({{ docsStore.projectInfo.progressSummary.releaseEngineering }}%)</span>
             </div>
           </div>
 
@@ -53,13 +53,13 @@
           <div class="p-4 rounded-2xl bg-slate-950/70 border border-emerald-500/30 space-y-2 min-w-[210px]">
             <div class="flex items-center justify-between text-slate-400">
               <span class="text-[10px] uppercase font-bold text-slate-300">OVERALL PROGRESS</span>
-              <span class="font-bold text-emerald-400">80%</span>
+              <span class="font-bold text-emerald-400">{{ docsStore.projectInfo.overallCompletion }}%</span>
             </div>
             <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700">
-              <div class="h-full bg-gradient-to-r from-blue-500 to-emerald-400 rounded-full transition-all duration-500" style="width: 80%"></div>
+              <div class="h-full bg-gradient-to-r from-blue-500 to-emerald-400 rounded-full transition-all duration-500" :style="{ width: docsStore.projectInfo.overallCompletion + '%' }"></div>
             </div>
             <div class="flex items-center justify-between text-[11px] text-slate-400">
-              <span>Phases Complete</span>
+              <span>Phases Active</span>
               <span class="text-emerald-400 font-bold">5 / 7 Phases</span>
             </div>
           </div>
@@ -75,47 +75,47 @@
           <span class="font-bold text-slate-100 text-sm">Global Repository Summary & Execution Control</span>
         </div>
         <div class="flex items-center space-x-2">
-          <span class="px-2.5 py-0.5 rounded font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20">v0.5.0 BASELINE</span>
-          <span class="px-2.5 py-0.5 rounded font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">PHASE 6 CURRENT</span>
+          <span class="px-2.5 py-0.5 rounded font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20">{{ docsStore.projectInfo.currentBaseline }} BASELINE</span>
+          <span class="px-2.5 py-0.5 rounded font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">PHASE 6 CURRENT ({{ docsStore.projectInfo.progressSummary.releaseEngineering }}%)</span>
         </div>
       </div>
 
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-3">
         <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
           <span class="text-slate-500 text-[9px] block uppercase font-bold">STATUS</span>
-          <span class="text-emerald-400 font-bold text-xs">🟢 Production Ready</span>
+          <span class="text-emerald-400 font-bold text-xs">{{ docsStore.projectInfo.repositoryStatus }}</span>
         </div>
         <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
           <span class="text-slate-500 text-[9px] block uppercase font-bold">BASELINE</span>
-          <span class="text-blue-400 font-bold text-xs">v0.5.0</span>
+          <span class="text-blue-400 font-bold text-xs">{{ docsStore.projectInfo.currentBaseline }}</span>
         </div>
         <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
           <span class="text-slate-500 text-[9px] block uppercase font-bold">ARCHITECTURE</span>
-          <span class="text-emerald-400 font-bold text-xs">Complete</span>
+          <span class="text-emerald-400 font-bold text-xs">{{ docsStore.projectInfo.architectureStatus }}</span>
         </div>
         <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
           <span class="text-slate-500 text-[9px] block uppercase font-bold">CURRENT SPRINT</span>
-          <span class="text-amber-300 font-bold text-xs">Sprint 5</span>
+          <span class="text-amber-300 font-bold text-xs">{{ docsStore.projectInfo.currentSprint }}</span>
         </div>
         <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1 col-span-2 sm:col-span-1">
           <span class="text-slate-500 text-[9px] block uppercase font-bold">CURRENT PHASE</span>
-          <span class="text-amber-300 font-bold text-xs">Phase 6 – Release Eng</span>
+          <span class="text-amber-300 font-bold text-xs">Phase 6 ({{ docsStore.projectInfo.progressSummary.releaseEngineering }}%)</span>
         </div>
         <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
           <span class="text-slate-500 text-[9px] block uppercase font-bold">BUILD</span>
-          <span class="text-emerald-400 font-bold text-xs">PASS</span>
+          <span class="text-emerald-400 font-bold text-xs">{{ docsStore.projectInfo.buildStatus }}</span>
         </div>
         <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
           <span class="text-slate-500 text-[9px] block uppercase font-bold">TYPE CHECK</span>
-          <span class="text-emerald-400 font-bold text-xs">PASS</span>
+          <span class="text-emerald-400 font-bold text-xs">{{ docsStore.projectInfo.typeCheckStatus }}</span>
         </div>
         <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
           <span class="text-slate-500 text-[9px] block uppercase font-bold">TEST SUITES</span>
-          <span class="text-emerald-400 font-bold text-xs">11 / 11 PASS</span>
+          <span class="text-emerald-400 font-bold text-xs">{{ docsStore.projectInfo.testSuitesStatus }}</span>
         </div>
         <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1">
           <span class="text-slate-500 text-[9px] block uppercase font-bold">HEALTH</span>
-          <span class="text-emerald-400 font-bold text-xs">Excellent</span>
+          <span class="text-emerald-400 font-bold text-xs">{{ docsStore.projectInfo.repositoryHealth }}</span>
         </div>
       </div>
     </div>
@@ -129,62 +129,46 @@
           </svg>
           <span>Product Version Release Timeline</span>
         </h3>
-        <span class="text-[11px] text-slate-400">Baseline Tag: <strong class="text-blue-400">v0.5.0</strong></span>
+        <span class="text-[11px] text-slate-400">Baseline Tag: <strong class="text-blue-400">{{ docsStore.projectInfo.currentBaseline }}</strong></span>
       </div>
 
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-2 text-center text-[11px]">
-        <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 space-y-0.5">
-          <span class="font-bold text-emerald-400 block text-[10px]">v0.1.0</span>
-          <span class="text-slate-300 font-semibold block text-[10px] truncate">Foundation</span>
-          <span class="text-[9px] text-emerald-400/80 font-bold">COMPLETED</span>
-        </div>
-
-        <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 space-y-0.5">
-          <span class="font-bold text-emerald-400 block text-[10px]">v0.2.0</span>
-          <span class="text-slate-300 font-semibold block text-[10px] truncate">EventBus</span>
-          <span class="text-[9px] text-emerald-400/80 font-bold">COMPLETED</span>
-        </div>
-
-        <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 space-y-0.5">
-          <span class="font-bold text-emerald-400 block text-[10px]">v0.3.0</span>
-          <span class="text-slate-300 font-semibold block text-[10px] truncate">Business Framework</span>
-          <span class="text-[9px] text-emerald-400/80 font-bold">COMPLETED</span>
-        </div>
-
-        <div class="p-2.5 rounded-xl bg-teal-500/15 border border-teal-500/30 space-y-0.5">
-          <span class="font-bold text-teal-300 block text-[10px]">v0.4.0</span>
-          <span class="text-slate-300 font-semibold block text-[10px] truncate">Migration</span>
-          <span class="text-[9px] text-teal-300 font-bold">ARCHIVED</span>
-        </div>
-
-        <div class="p-2.5 rounded-xl bg-blue-500/20 border border-blue-500/40 space-y-0.5 ring-2 ring-blue-500/30">
-          <span class="font-bold text-blue-300 block text-[10px]">v0.5.0</span>
-          <span class="text-slate-200 font-semibold block text-[10px] truncate">Hardening</span>
-          <span class="text-[9px] text-blue-300 font-bold">BASELINE</span>
-        </div>
-
-        <div class="p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/40 space-y-0.5 ring-2 ring-amber-500/30">
-          <span class="font-bold text-amber-300 block text-[10px]">v0.6.0</span>
-          <span class="text-slate-200 font-semibold block text-[10px] truncate">Release Eng</span>
-          <span class="text-[9px] text-amber-300 font-bold">CURRENT</span>
-        </div>
-
-        <div class="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-0.5">
-          <span class="font-bold text-slate-400 block text-[10px]">v0.7.0</span>
-          <span class="text-slate-400 block text-[10px] truncate">Beta</span>
-          <span class="text-[9px] text-slate-500 font-bold">PLANNED</span>
-        </div>
-
-        <div class="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-0.5">
-          <span class="font-bold text-slate-400 block text-[10px]">v0.9.0</span>
-          <span class="text-slate-400 block text-[10px] truncate">Release Candidate</span>
-          <span class="text-[9px] text-slate-500 font-bold">PLANNED</span>
-        </div>
-
-        <div class="p-2.5 rounded-xl bg-yellow-500/10 border border-yellow-500/20 space-y-0.5">
-          <span class="font-bold text-yellow-400 block text-[10px]">v1.0.0</span>
-          <span class="text-yellow-300 font-semibold block text-[10px] truncate">GA Release</span>
-          <span class="text-[9px] text-yellow-400 font-bold">GOAL</span>
+        <div
+          v-for="item in docsStore.projectInfo.releaseTimeline"
+          :key="item.version"
+          class="p-2.5 rounded-xl border space-y-0.5"
+          :class="{
+            'bg-emerald-500/10 border-emerald-500/20': item.status === 'Completed',
+            'bg-teal-500/15 border-teal-500/30': item.status === 'ARCHIVED',
+            'bg-blue-500/20 border-blue-500/40 ring-2 ring-blue-500/30': item.status === 'BASELINE',
+            'bg-amber-500/20 border-amber-500/40 ring-2 ring-amber-500/30': item.status === 'CURRENT',
+            'bg-slate-900/60 border-slate-800': item.status === 'PLANNED',
+            'bg-yellow-500/10 border-yellow-500/20': item.status === 'GOAL'
+          }"
+        >
+          <span
+            class="font-bold block text-[10px]"
+            :class="{
+              'text-emerald-400': item.status === 'Completed',
+              'text-teal-300': item.status === 'ARCHIVED',
+              'text-blue-300': item.status === 'BASELINE',
+              'text-amber-300': item.status === 'CURRENT',
+              'text-slate-400': item.status === 'PLANNED',
+              'text-yellow-400': item.status === 'GOAL'
+            }"
+          >{{ item.version }}</span>
+          <span class="text-slate-300 font-semibold block text-[10px] truncate">{{ item.label }}</span>
+          <span
+            class="text-[9px] font-bold uppercase"
+            :class="{
+              'text-emerald-400/80': item.status === 'Completed',
+              'text-teal-300': item.status === 'ARCHIVED',
+              'text-blue-300': item.status === 'BASELINE',
+              'text-amber-300': item.status === 'CURRENT',
+              'text-slate-500': item.status === 'PLANNED',
+              'text-yellow-400': item.status === 'GOAL'
+            }"
+          >{{ item.status }}</span>
         </div>
       </div>
     </div>
@@ -194,14 +178,13 @@
       <div class="flex items-center justify-between border-b border-slate-700/60 pb-3">
         <h3 class="text-sm font-bold font-heading text-slate-100 flex items-center space-x-2">
           <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 30a1 1 0 000 2h2a1 1 0 000-2h-2z" />
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
           </svg>
           <span>Overall Project Progress Summary</span>
         </h3>
         <div class="flex items-center space-x-3">
           <span class="text-slate-400">Total Completion:</span>
-          <span class="text-emerald-400 font-bold text-sm">~80%</span>
+          <span class="text-emerald-400 font-bold text-sm">{{ docsStore.projectInfo.overallCompletion }}%</span>
         </div>
       </div>
 
@@ -209,48 +192,51 @@
       <div class="space-y-1.5">
         <div class="flex items-center justify-between text-slate-300">
           <span>Global Product Roadmap Execution</span>
-          <span class="font-bold text-emerald-400">80% Total</span>
+          <span class="font-bold text-emerald-400">{{ docsStore.projectInfo.overallCompletion }}% Total</span>
         </div>
         <div class="w-full h-3 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-700">
-          <div class="h-full bg-gradient-to-r from-blue-500 via-teal-400 to-emerald-400 rounded-full transition-all duration-500" style="width: 80%"></div>
+          <div
+            class="h-full bg-gradient-to-r from-blue-500 via-teal-400 to-emerald-400 rounded-full transition-all duration-500"
+            :style="{ width: docsStore.projectInfo.overallCompletion + '%' }"
+          ></div>
         </div>
       </div>
 
       <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 pt-2">
         <div class="p-2.5 rounded-xl bg-slate-900/70 border border-emerald-500/20 text-center space-y-1">
           <span class="text-slate-400 text-[10px] block font-bold">FOUNDATION</span>
-          <span class="text-emerald-400 font-bold">100%</span>
+          <span class="text-emerald-400 font-bold">{{ docsStore.projectInfo.progressSummary.foundation }}%</span>
         </div>
         <div class="p-2.5 rounded-xl bg-slate-900/70 border border-emerald-500/20 text-center space-y-1">
           <span class="text-slate-400 text-[10px] block font-bold">ARCHITECTURE</span>
-          <span class="text-emerald-400 font-bold">100%</span>
+          <span class="text-emerald-400 font-bold">{{ docsStore.projectInfo.progressSummary.architecture }}%</span>
         </div>
         <div class="p-2.5 rounded-xl bg-slate-900/70 border border-emerald-500/20 text-center space-y-1">
           <span class="text-slate-400 text-[10px] block font-bold">DOCUMENTATION</span>
-          <span class="text-emerald-400 font-bold">100%</span>
+          <span class="text-emerald-400 font-bold">{{ docsStore.projectInfo.progressSummary.documentation }}%</span>
         </div>
         <div class="p-2.5 rounded-xl bg-slate-900/70 border border-teal-500/30 text-center space-y-1">
           <span class="text-slate-400 text-[10px] block font-bold">BUSINESS FWK</span>
-          <span class="text-teal-300 font-bold">100%</span>
+          <span class="text-teal-300 font-bold">{{ docsStore.projectInfo.progressSummary.businessFramework }}%</span>
         </div>
         <div class="p-2.5 rounded-xl bg-slate-900/70 border border-blue-500/30 text-center space-y-1">
           <span class="text-slate-400 text-[10px] block font-bold">HARDENING</span>
-          <span class="text-blue-300 font-bold">100%</span>
+          <span class="text-blue-300 font-bold">{{ docsStore.projectInfo.progressSummary.productionHardening }}%</span>
         </div>
         <div class="p-2.5 rounded-xl bg-slate-900/70 border border-amber-500/30 text-center space-y-1 ring-1 ring-amber-500/20">
           <span class="text-slate-400 text-[10px] block font-bold">RELEASE ENG</span>
-          <span class="text-amber-300 font-bold">0%</span>
+          <span class="text-amber-300 font-bold">{{ docsStore.projectInfo.progressSummary.releaseEngineering }}%</span>
         </div>
         <div class="p-2.5 rounded-xl bg-slate-900/70 border border-yellow-500/20 text-center space-y-1">
           <span class="text-slate-400 text-[10px] block font-bold">VERSION 1.0</span>
-          <span class="text-yellow-400 font-bold">0%</span>
+          <span class="text-yellow-400 font-bold">{{ docsStore.projectInfo.progressSummary.gaRelease }}%</span>
         </div>
       </div>
     </div>
 
     <!-- 4. 7-PHASE HIERARCHY FLOW & MILESTONE SUMMARY WIDGETS -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <!-- 7-Phase Hierarchy Flow -->
+      <!-- 7-Phase Hierarchy Flow Dynamic Component -->
       <div class="lg:col-span-2 p-6 rounded-2xl bg-slate-800/50 border border-slate-700/60 space-y-4">
         <div class="flex items-center justify-between">
           <h2 class="text-base font-bold font-heading text-slate-100 flex items-center space-x-2">
@@ -263,93 +249,54 @@
         </div>
 
         <div class="space-y-2 text-xs font-mono">
-          <!-- Phase 1 (COMPLETED - GREEN - READ ONLY) -->
-          <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center justify-between">
+          <div
+            v-for="phase in docsStore.phases"
+            :key="phase.id"
+            class="p-3 rounded-xl bg-slate-900/60 border flex items-center justify-between"
+            :class="{
+              'border-slate-800': phase.id <= 3,
+              'border-teal-500/30': phase.id === 4,
+              'border-blue-500/40 bg-slate-900/80': phase.id === 5,
+              'border-amber-500/40 bg-amber-500/10 ring-1 ring-amber-500/30': phase.id === 6,
+              'border-yellow-500/30 bg-slate-900/40': phase.id === 7
+            }"
+          >
             <div class="flex items-center space-x-3">
-              <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-[11px]">1</span>
-              <div>
-                <span class="font-bold text-slate-200">Phase 1: Foundation (M00 - M03)</span>
-                <span class="text-[10px] text-slate-400 block font-mono">Core Extension Scaffolding & Lifecycle Engine</span>
-              </div>
-            </div>
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">COMPLETED</span>
-          </div>
-
-          <!-- Phase 2 (COMPLETED - GREEN - READ ONLY) -->
-          <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-              <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-[11px]">2</span>
-              <div>
-                <span class="font-bold text-slate-200">Phase 2: Architecture (M04 - M05)</span>
-                <span class="text-[10px] text-slate-400 block font-mono">Enterprise Event Bus Architecture & SAD</span>
-              </div>
-            </div>
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">COMPLETED</span>
-          </div>
-
-          <!-- Phase 3 (COMPLETED - GREEN - READ ONLY) -->
-          <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-              <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-[11px]">3</span>
-              <div>
-                <span class="font-bold text-slate-200">Phase 3: Documentation (M06 - M11)</span>
-                <span class="text-[10px] text-slate-400 block font-mono">Governance, Metadata Engine & Portal v1.0</span>
-              </div>
-            </div>
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">COMPLETED</span>
-          </div>
-
-          <!-- Phase 4 (ARCHIVED - TEAL - READ ONLY) -->
-          <div class="p-3 rounded-xl bg-slate-900/60 border border-teal-500/30 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-              <span class="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-300 font-bold flex items-center justify-center text-[11px]">4</span>
-              <div>
-                <span class="font-bold text-slate-100">Phase 4: Business Framework</span>
-                <span class="text-[10px] text-teal-400 block font-mono">Business Framework Migration Complete (13 Work Packages Finished)</span>
-              </div>
-            </div>
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-teal-500/15 text-teal-300 border border-teal-500/30">ARCHIVED</span>
-          </div>
-
-          <!-- Phase 5 (BASELINE v0.5.0 - BLUE - READ ONLY) -->
-          <div class="p-3 rounded-xl bg-slate-900/80 border border-blue-500/40 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-              <span class="w-6 h-6 rounded-lg bg-blue-500/20 text-blue-400 font-bold flex items-center justify-center text-[11px]">5</span>
+              <span
+                class="w-6 h-6 rounded-lg font-bold flex items-center justify-center text-[11px]"
+                :class="{
+                  'bg-emerald-500/20 text-emerald-400': phase.id <= 3,
+                  'bg-teal-500/20 text-teal-300': phase.id === 4,
+                  'bg-blue-500/20 text-blue-400': phase.id === 5,
+                  'bg-amber-500/20 text-amber-300': phase.id === 6,
+                  'bg-yellow-500/20 text-yellow-400': phase.id === 7
+                }"
+              >{{ phase.id }}</span>
               <div>
                 <div class="flex items-center space-x-2">
-                  <span class="font-bold text-blue-300">Phase 5: Production Hardening</span>
-                  <span class="px-1.5 py-0.2 rounded text-[9px] bg-blue-500/20 text-blue-300 font-bold">v0.5.0</span>
+                  <span
+                    class="font-bold"
+                    :class="{
+                      'text-slate-200': phase.id <= 3,
+                      'text-slate-100': phase.id === 4,
+                      'text-blue-300': phase.id === 5,
+                      'text-amber-300': phase.id === 6,
+                      'text-yellow-300': phase.id === 7
+                    }"
+                  >{{ phase.name }}</span>
+                  <span
+                    v-if="phase.versionTag"
+                    class="px-1.5 py-0.2 rounded text-[9px] font-bold"
+                    :class="phase.id === 5 ? 'bg-blue-500/20 text-blue-300' : 'bg-amber-500/20 text-amber-300'"
+                  >{{ phase.versionTag }}</span>
                 </div>
-                <span class="text-[10px] text-blue-400/90 block font-mono">Production Hardening Complete (Benchmark, Reliability, Observability, Production Integration, Runtime Wiring)</span>
+                <span class="text-[10px] block font-mono" :class="phase.id === 6 ? 'text-amber-400' : 'text-slate-400'">{{ phase.desc }}</span>
               </div>
             </div>
-            <div class="flex items-center space-x-2">
-              <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">BASELINE</span>
-            </div>
-          </div>
-
-          <!-- Phase 6 (CURRENT - ORANGE - SPRINT 5 EDITABLE) -->
-          <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/40 flex items-center justify-between ring-1 ring-amber-500/30">
-            <div class="flex items-center space-x-3">
-              <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-300 font-bold flex items-center justify-center text-[11px]">6</span>
-              <div>
-                <span class="font-bold text-amber-300">Phase 6: Release Engineering</span>
-                <span class="text-[10px] text-amber-400 block font-mono">CI/CD Pipeline • Automated Testing • Release Packaging • Chrome Web Store Submission</span>
-              </div>
-            </div>
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">CURRENT</span>
-          </div>
-
-          <!-- Phase 7 (GOAL - GOLD / PURPLE) -->
-          <div class="p-3 rounded-xl bg-slate-900/40 border border-yellow-500/30 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-              <span class="w-6 h-6 rounded-lg bg-yellow-500/20 text-yellow-400 font-bold flex items-center justify-center text-[11px]">7</span>
-              <div>
-                <span class="font-bold text-yellow-300">Phase 7: Version 1.0 Release (GA)</span>
-                <span class="text-[10px] text-yellow-400/80 block font-mono">Version 1.0 General Availability Goal</span>
-              </div>
-            </div>
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">GOAL</span>
+            <span
+              class="px-2.5 py-1 rounded-full text-[10px] font-bold border"
+              :class="phase.badgeClass"
+            >{{ phase.badge }}</span>
           </div>
         </div>
       </div>
@@ -366,29 +313,14 @@
           </h3>
 
           <div class="space-y-2">
-            <div class="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center justify-between">
-              <span class="font-bold text-slate-300">Sprint 1</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Completed</span>
-            </div>
-            <div class="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center justify-between">
-              <span class="font-bold text-slate-300">Sprint 2</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Completed</span>
-            </div>
-            <div class="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center justify-between">
-              <span class="font-bold text-slate-300">Sprint 3</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Completed</span>
-            </div>
-            <div class="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-between">
-              <span class="font-bold text-blue-300">Sprint 4</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">Baseline v0.5.0</span>
-            </div>
-            <div class="p-2.5 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-between ring-1 ring-amber-500/20">
-              <span class="font-bold text-amber-300">Sprint 5</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Current Development</span>
-            </div>
-            <div class="p-2.5 rounded-xl bg-slate-900/40 border border-slate-800/80 flex items-center justify-between">
-              <span class="font-bold text-slate-400">Sprint 6</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-800 text-slate-400 border border-slate-700">Future</span>
+            <div
+              v-for="sprint in docsStore.sprints"
+              :key="sprint.name"
+              class="p-2.5 rounded-xl border flex items-center justify-between"
+              :class="sprint.active ? 'bg-amber-500/15 border-amber-500/30 ring-1 ring-amber-500/20' : 'bg-slate-900/60 border-slate-800'"
+            >
+              <span class="font-bold" :class="sprint.active ? 'text-amber-300' : 'text-slate-300'">{{ sprint.name }}</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold border" :class="sprint.badgeClass">{{ sprint.status }}</span>
             </div>
           </div>
         </div>
@@ -405,43 +337,43 @@
           <div class="grid grid-cols-2 gap-2 text-[11px]">
             <div class="p-2 rounded-lg bg-slate-900/60 border border-slate-800">
               <span class="text-slate-500 block text-[9px]">ARCHITECTURE</span>
-              <span class="font-bold text-emerald-400">Complete</span>
+              <span class="font-bold text-emerald-400">{{ docsStore.projectInfo.healthCard.architecture }}</span>
             </div>
             <div class="p-2 rounded-lg bg-slate-900/60 border border-slate-800">
               <span class="text-slate-500 block text-[9px]">BUSINESS FWK</span>
-              <span class="font-bold text-emerald-400">Complete</span>
+              <span class="font-bold text-emerald-400">{{ docsStore.projectInfo.healthCard.businessFramework }}</span>
             </div>
             <div class="p-2 rounded-lg bg-slate-900/60 border border-slate-800">
               <span class="text-slate-500 block text-[9px]">PERFORMANCE</span>
-              <span class="font-bold text-emerald-400">Complete</span>
+              <span class="font-bold text-emerald-400">{{ docsStore.projectInfo.healthCard.performanceFramework }}</span>
             </div>
             <div class="p-2 rounded-lg bg-slate-900/60 border border-slate-800">
               <span class="text-slate-500 block text-[9px]">RELIABILITY</span>
-              <span class="font-bold text-emerald-400">Complete</span>
+              <span class="font-bold text-emerald-400">{{ docsStore.projectInfo.healthCard.reliabilityFramework }}</span>
             </div>
             <div class="p-2 rounded-lg bg-slate-900/60 border border-slate-800">
               <span class="text-slate-500 block text-[9px]">OBSERVABILITY</span>
-              <span class="font-bold text-emerald-400">Complete</span>
+              <span class="font-bold text-emerald-400">{{ docsStore.projectInfo.healthCard.observabilityPlatform }}</span>
             </div>
             <div class="p-2 rounded-lg bg-slate-900/60 border border-slate-800">
               <span class="text-slate-500 block text-[9px]">INTEGRATION</span>
-              <span class="font-bold text-emerald-400">Complete</span>
+              <span class="font-bold text-emerald-400">{{ docsStore.projectInfo.healthCard.integrationLayer }}</span>
             </div>
             <div class="p-2 rounded-lg bg-slate-900/60 border border-slate-800">
               <span class="text-slate-500 block text-[9px]">WIRING</span>
-              <span class="font-bold text-emerald-400">Complete</span>
+              <span class="font-bold text-emerald-400">{{ docsStore.projectInfo.healthCard.runtimeWiring }}</span>
             </div>
             <div class="p-2 rounded-lg bg-slate-900/60 border border-slate-800">
               <span class="text-slate-500 block text-[9px]">HEALTH</span>
-              <span class="font-bold text-emerald-400">Excellent</span>
+              <span class="font-bold text-emerald-400">{{ docsStore.projectInfo.healthCard.repositoryHealth }}</span>
             </div>
             <div class="p-2 rounded-lg bg-slate-900/60 border border-slate-800">
               <span class="text-slate-500 block text-[9px]">TECH DEBT</span>
-              <span class="font-bold text-emerald-400">Low</span>
+              <span class="font-bold text-emerald-400">{{ docsStore.projectInfo.healthCard.technicalDebt }}</span>
             </div>
             <div class="p-2 rounded-lg bg-slate-900/60 border border-slate-800">
               <span class="text-slate-500 block text-[9px]">BUILD & TESTS</span>
-              <span class="font-bold text-emerald-400">PASS (11/11)</span>
+              <span class="font-bold text-emerald-400">{{ docsStore.projectInfo.healthCard.build }} ({{ docsStore.projectInfo.testMetrics.passed }}/{{ docsStore.projectInfo.testMetrics.totalTests }})</span>
             </div>
           </div>
         </div>
@@ -452,9 +384,9 @@
     <div class="space-y-6">
       <WorkPackageAccordion
         title="Work Packages (Historical & Active)"
-        :completed="13"
-        :total="13"
-        :progress="100"
+        :completed="docsStore.projectInfo.completedMilestones"
+        :total="docsStore.projectInfo.totalMilestones"
+        :progress="docsStore.projectInfo.overallCompletion"
         :items="sprintWorkPackages"
         storageKey="dashboard_wp_accordion_expanded"
       />
@@ -471,7 +403,12 @@ import WorkPackageAccordion from '@/components/WorkPackageAccordion.vue';
 const docsStore = useDocsStore();
 
 const sprintWorkPackages = computed(() => {
-  const m14 = docsStore.milestones.find(m => m.id === 'M14');
-  return m14?.workPackages || [];
+  return docsStore.milestones.map(m => ({
+    id: m.id,
+    name: m.name,
+    status: (m.status === 'COMPLETED' || m.status === 'ARCHIVED' || m.status === 'BASELINE' ? 'Completed' : 'Planned') as 'Completed' | 'Planned',
+    description: m.summary,
+    icon: m.status === 'COMPLETED' || m.status === 'ARCHIVED' || m.status === 'BASELINE' ? 'check-circle' : 'clock'
+  }));
 });
 </script>

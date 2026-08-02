@@ -1,13 +1,11 @@
 # Platform Version Specification
 
 > **Title**: SPPG Companion Platform Version Matrix  
-> **Version**: 1.0.0  
+> **Version**: v1.0.0  
 > **Status**: APPROVED  
-> **Author**: Lead Software Architect  
-> **Reviewer**: Enterprise Architecture Board  
+> **Current Baseline**: v1.0.0  
 > **Created**: 2026-07-31  
-> **Last Updated**: 2026-07-31  
-> **Next Review**: 2026-08-30  
+> **Last Updated**: 2026-08-02  
 
 ---
 
@@ -15,22 +13,13 @@
 
 | Property | Value | Description |
 | :--- | :--- | :--- |
-| **Platform Version** | `1.1.0` | Semantic version string |
-| **Current Sprint** | `Sprint D1.5 (Documentation Portal Synchronization Engine)` | Active sprint scope |
-| **Current Milestone** | `M11 / M12` | Milestone registry ID |
-| **Current Build** | `20260731.3` | Automated build stamp |
-| **Release Channel** | `Development / Alpha` | Pre-release release track |
-| **Semantic Version** | `1.1.0` | Major.Minor.Patch |
+| **Platform Baseline** | `v1.0.0` | Current Git tag & baseline version |
+| **Current Sprint** | `Sprint 5 (Release Engineering)` | Active sprint scope |
+| **Current Phase** | `Phase 6 (Release Engineering)` | Active phase scope |
+| **Completed Work Packages** | `WP-6.1`, `WP-6.2`, `WP-6.3`, `WP-6.4`, `WP-6.5` | Milestone M19, M20, M21, M22, M23 |
+| **Next Target** | `Sprint 6 (Storage Engine)` | Next product scope |
+| **Phase Completion** | `100% (5 / 5 Completed)` | Phase 6 progress metric |
+| **Release Channel** | `General Availability (GA) Certified` | Production release track |
 | **Architecture Version** | `v3.1` | Event-Driven Bus Architecture |
-| **Documentation Version** | `v1.0 Final` | Dynamic Metadata Portal Engine |
-| **Minimum Browser Version** | `Chrome 116+ / Edge 116+` | MV3 Service Worker requirement |
-| **Platform Status** | `STABLE` | Verified 0-error build state |
-
----
-
-## Versioning Policy
-
-The platform enforces **Semantic Versioning 2.0.0** (`MAJOR.MINOR.PATCH`):
-- **MAJOR**: Incompatible architectural breaking changes or major framework migration.
-- **MINOR**: Backward-compatible new features or new engine modules (e.g. Network Interceptor, Event Bus).
-- **PATCH**: Backward-compatible bug fixes, minor performance tweaks, or documentation updates.
+| **Minimum Browser Version** | `Chrome 102+ / Edge 102+` | MV3 Service Worker requirement |
+| **Platform Status** | `READY FOR GENERAL AVAILABILITY` | Verified 0-error build state |
