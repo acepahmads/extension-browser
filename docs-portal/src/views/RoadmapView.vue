@@ -8,24 +8,24 @@
         <div>
           <div class="flex items-center space-x-3 mb-1">
             <span class="px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase">
-              Enterprise Delivery Roadmap v2.1
+              Enterprise Delivery Roadmap v2.2
             </span>
-            <span class="text-xs font-mono text-slate-400">High Density Product Hierarchy</span>
+            <span class="text-xs font-mono text-slate-400">Baseline v0.5.0 Hardening Complete</span>
           </div>
           <h1 class="text-2xl lg:text-3xl font-extrabold font-heading text-slate-100">Enterprise Project Roadmap</h1>
-          <p class="text-slate-400 text-xs mt-1">Single-screen 7-phase hierarchy visualization. Displays completed history, current focus, and upcoming targets.</p>
+          <p class="text-slate-400 text-xs mt-1">Single-screen 7-phase hierarchy visualization. Displays completed history, hardening baseline, current release engineering focus, and target goals.</p>
         </div>
 
         <div class="flex items-center space-x-3 shrink-0">
           <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/60 text-xs font-mono flex items-center space-x-4">
             <div>
-              <span class="text-slate-500 block text-[10px]">COMPLETED MILESTONES</span>
-              <span class="text-emerald-400 font-bold">{{ docsStore.projectInfo.completedMilestones }} / {{ docsStore.projectInfo.totalMilestones }}</span>
+              <span class="text-slate-500 block text-[10px]">BASELINE TAG</span>
+              <span class="text-blue-400 font-bold">v0.5.0</span>
             </div>
             <div class="h-6 w-px bg-slate-700"></div>
             <div>
-              <span class="text-slate-500 block text-[10px]">OVERALL PRODUCT ROADMAP</span>
-              <span class="text-blue-400 font-bold">{{ docsStore.projectInfo.overallCompletion }}%</span>
+              <span class="text-slate-500 block text-[10px]">OVERALL PRODUCT PROGRESS</span>
+              <span class="text-emerald-400 font-bold">80%</span>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@
             <span class="font-semibold text-slate-200 text-[11px] block leading-tight truncate">{{ getPhaseShortTitle(phaseName) }}</span>
           </div>
           <div class="flex items-center justify-between pt-1 border-t border-slate-700/50 text-[10px]">
-            <span class="font-bold px-1.5 py-0.2 rounded" :class="getPhaseBadgeClass(index + 1)">
+            <span class="font-bold px-1.5 py-0.2 rounded text-[9px]" :class="getPhaseBadgeClass(index + 1)">
               {{ getPhaseBadgeText(index + 1) }}
             </span>
             <span class="font-bold font-mono text-slate-300">
@@ -65,6 +65,26 @@
             </span>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Milestone Timeline Summary Ribbon -->
+    <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 font-mono text-xs space-y-2">
+      <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Production Milestone Timeline Flow</span>
+      <div class="flex flex-wrap items-center gap-2 text-[11px]">
+        <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">Phase 1 (Completed)</span>
+        <span class="text-slate-600">→</span>
+        <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">Phase 2 (Completed)</span>
+        <span class="text-slate-600">→</span>
+        <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">Phase 3 (Completed)</span>
+        <span class="text-slate-600">→</span>
+        <span class="px-2.5 py-1 rounded-lg bg-teal-500/15 text-teal-300 border border-teal-500/30 font-bold">Phase 4 (Archived)</span>
+        <span class="text-slate-600">→</span>
+        <span class="px-2.5 py-1 rounded-lg bg-blue-500/20 text-blue-300 border border-blue-500/30 font-bold">Phase 5 (Baseline v0.5.0)</span>
+        <span class="text-slate-600">→</span>
+        <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 border border-slate-700 font-bold">Phase 6 (Planned)</span>
+        <span class="text-slate-600">→</span>
+        <span class="px-2.5 py-1 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20 font-bold">Phase 7 (Goal)</span>
       </div>
     </div>
 
@@ -89,6 +109,9 @@
                 <h2 class="text-base font-bold font-heading text-slate-100">{{ phaseName }}</h2>
                 <span class="px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold border" :class="getPhaseBadgeClass(index + 1)">
                   {{ getPhaseBadgeText(index + 1) }}
+                </span>
+                <span v-if="index + 1 === 5" class="px-2 py-0.5 rounded font-mono text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                  v0.5.0 BASELINE
                 </span>
                 <span class="px-2 py-0.5 rounded font-mono text-[10px] font-bold bg-slate-900 text-slate-400 border border-slate-700">
                   {{ getCompletedCount(phaseName) }} of {{ getPhaseCount(phaseName) }} Completed
@@ -119,16 +142,15 @@
         <div v-show="!collapsedPhases[phaseName]" class="divide-y divide-slate-800/60">
           <!-- SPECIAL EXPANDED VIEW FOR PHASE 4: HISTORICAL ENGINEERING ARCHIVE -->
           <div v-if="phaseName.includes('Phase 4')" class="p-6 bg-slate-950/40 space-y-6">
-            <!-- Read-Only Historical Status Banner -->
-            <div class="p-4 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-slate-900 to-slate-900 border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs">
+            <div class="p-4 rounded-2xl bg-gradient-to-r from-teal-500/10 via-slate-900 to-slate-900 border border-teal-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs">
               <div class="flex items-center space-x-3">
-                <span class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold text-sm shrink-0">🏛️</span>
+                <span class="w-8 h-8 rounded-xl bg-teal-500/20 text-teal-300 border border-teal-500/30 flex items-center justify-center font-bold text-sm shrink-0">🏛️</span>
                 <div>
                   <div class="flex items-center space-x-2">
                     <h3 class="font-bold text-slate-100 text-sm">Business Framework Migration</h3>
-                    <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">COMPLETED & ARCHIVED</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] bg-teal-500/20 text-teal-300 border border-teal-500/30 font-bold">ARCHIVED</span>
                   </div>
-                  <p class="text-slate-400 text-xs mt-0.5">Read-only historical engineering record. All 13 Sprint 3B Work Packages completed and verified.</p>
+                  <p class="text-slate-400 text-xs mt-0.5">Business Framework Migration Complete (13 Work Packages Finished).</p>
                 </div>
               </div>
 
@@ -138,50 +160,12 @@
                   <span class="text-emerald-400 font-bold">BUSINESS ONLY</span>
                 </div>
                 <div class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 space-y-0.5">
-                  <span class="text-slate-500 block text-[9px]">REPOSITORY</span>
-                  <span class="text-emerald-400 font-bold">CLEAN</span>
-                </div>
-                <div class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 space-y-0.5">
-                  <span class="text-slate-500 block text-[9px]">PROGRAM STATUS</span>
-                  <span class="text-emerald-400 font-bold">100% COMPLETE</span>
+                  <span class="text-slate-500 block text-[9px]">STATUS</span>
+                  <span class="text-teal-300 font-bold">13/13 FINISHED</span>
                 </div>
               </div>
             </div>
 
-            <!-- Historical Sprint Sub-Milestones -->
-            <div class="space-y-3">
-              <h4 class="text-xs font-bold font-mono text-slate-300 uppercase tracking-wider">Historical Sprint Milestones</h4>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs">
-                <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between space-y-2">
-                  <div class="flex items-center justify-between">
-                    <span class="text-blue-400 font-bold text-[11px]">Sprint 3B.2</span>
-                    <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">COMPLETED</span>
-                  </div>
-                  <h5 class="font-bold text-slate-200">Middleware & Event Bus Core</h5>
-                  <p class="text-[11px] text-slate-400 leading-normal">Event Validator, Priority Dispatcher Queue, Schema Registry, Metrics Collector & DLQ.</p>
-                </div>
-
-                <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between space-y-2">
-                  <div class="flex items-center justify-between">
-                    <span class="text-blue-400 font-bold text-[11px]">Sprint 3B.3</span>
-                    <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">COMPLETED</span>
-                  </div>
-                  <h5 class="font-bold text-slate-200">Subscriber Layer</h5>
-                  <p class="text-[11px] text-slate-400 leading-normal">Runtime Publisher Wiring, Dual Publish, Configuration Hardening & Subscriber Registry.</p>
-                </div>
-
-                <div class="p-4 rounded-xl bg-slate-900/80 border border-emerald-500/30 flex flex-col justify-between space-y-2">
-                  <div class="flex items-center justify-between">
-                    <span class="text-blue-400 font-bold text-[11px]">Sprint 3B.4</span>
-                    <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">COMPLETED</span>
-                  </div>
-                  <h5 class="font-bold text-slate-200">Business Framework</h5>
-                  <p class="text-[11px] text-slate-400 leading-normal">Business Dispatcher, Handlers, Shadow Mode, Cutover & Legacy Cleanup.</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Embedded Work Packages Accordion Component (Collapsed by default) -->
             <WorkPackageAccordion
               title="Work Packages (Historical Archive)"
               :completed="13"
@@ -190,40 +174,64 @@
               :items="phase4WorkPackages"
               storageKey="phase4_wp_accordion_expanded"
             />
+          </div>
 
-            <!-- Restored Historical Engineering Validation Panel -->
-            <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3 font-mono">
-              <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center space-x-2">
-                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>Historical Engineering Validation Evidence</span>
-              </h4>
+          <!-- SPECIAL EXPANDED VIEW FOR PHASE 5: HARDENING BASELINE -->
+          <div v-else-if="phaseName.includes('Phase 5')" class="p-6 bg-slate-950/40 space-y-6">
+            <div class="p-4 rounded-2xl bg-gradient-to-r from-blue-500/15 via-slate-900 to-slate-900 border border-blue-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs">
+              <div class="flex items-center space-x-3">
+                <span class="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center justify-center font-bold text-sm shrink-0">🛡️</span>
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <h3 class="font-bold text-slate-100 text-sm">Production Hardening Suite</h3>
+                    <span class="px-2.5 py-0.5 rounded text-[10px] bg-blue-500/20 text-blue-300 border border-blue-500/30 font-bold">BASELINE v0.5.0</span>
+                  </div>
+                  <p class="text-slate-400 text-xs mt-0.5">Production Hardening Complete — Benchmark, Reliability, Observability & Integration Layer (4 / 4 Work Packages Completed).</p>
+                </div>
+              </div>
 
-              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
-                <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
-                  <span class="text-slate-500 text-[10px] block font-bold">PUBLISHER AUDIT</span>
-                  <span class="text-emerald-400 font-bold">PASS (13 / 13)</span>
+              <div class="flex flex-wrap items-center gap-3 shrink-0 text-[11px]">
+                <div class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 space-y-0.5">
+                  <span class="text-slate-500 block text-[9px]">TAGGED BASELINE</span>
+                  <span class="text-blue-400 font-bold">v0.5.0</span>
                 </div>
-                <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
-                  <span class="text-slate-500 text-[10px] block font-bold">TOPIC COVERAGE</span>
-                  <span class="text-emerald-400 font-bold">100% Topics</span>
+                <div class="px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 space-y-0.5">
+                  <span class="text-slate-500 block text-[9px]">COMPLETION</span>
+                  <span class="text-emerald-400 font-bold">4 / 4 (100%)</span>
                 </div>
-                <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
-                  <span class="text-slate-500 text-[10px] block font-bold">SUBSCRIBER BASELINE</span>
-                  <span class="text-emerald-400 font-bold">PASS (15 Handlers)</span>
+              </div>
+            </div>
+
+            <!-- Standard Milestone Rows for Phase 5 -->
+            <div class="divide-y divide-slate-800/60">
+              <div 
+                v-for="item in getMilestonesByPhase(phaseName)" 
+                :key="item.id"
+                @click="openMilestone(item)"
+                class="px-5 py-3 hover:bg-slate-800/80 transition cursor-pointer flex items-center justify-between gap-4 group text-xs font-mono"
+              >
+                <div class="flex items-center space-x-3 min-w-0 flex-1">
+                  <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 shrink-0">
+                    {{ item.id }}
+                  </span>
+                  <span class="text-slate-400 shrink-0 hidden md:inline-block w-28">
+                    {{ item.sprint }}
+                  </span>
+                  <span class="font-semibold text-slate-200 group-hover:text-blue-400 transition truncate">
+                    {{ item.name }}
+                  </span>
                 </div>
-                <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
-                  <span class="text-slate-500 text-[10px] block font-bold">BUSINESS FRAMEWORK</span>
-                  <span class="text-emerald-400 font-bold">PRODUCTION</span>
-                </div>
-                <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
-                  <span class="text-slate-500 text-[10px] block font-bold">REPOSITORY HEALTH</span>
-                  <span class="text-emerald-400 font-bold">EXCELLENT</span>
-                </div>
-                <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
-                  <span class="text-slate-500 text-[10px] block font-bold">READINESS</span>
-                  <span class="text-emerald-400 font-bold">READY (WP-5 NEXT)</span>
+
+                <div class="flex items-center space-x-4 shrink-0 font-mono text-xs">
+                  <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-500/15 text-blue-300 border border-blue-500/30">
+                    {{ item.status }}
+                  </span>
+                  <svg class="w-4 h-4 text-slate-500 group-hover:text-blue-400 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
                 </div>
               </div>
             </div>
@@ -235,10 +243,9 @@
               @click="openMilestone(item)"
               class="px-5 py-3 hover:bg-slate-800/80 transition cursor-pointer flex items-center justify-between gap-4 group text-xs"
             >
-              <!-- Left: Status Icon & ID & Name -->
               <div class="flex items-center space-x-3 min-w-0 flex-1">
                 <span class="shrink-0">
-                  <svg v-if="item.status === 'COMPLETED'" class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg v-if="item.status === 'COMPLETED' || item.status === 'BASELINE'" class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                   </svg>
                   <svg v-else-if="item.status === 'IN_PROGRESS'" class="w-4 h-4 text-blue-400 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -262,7 +269,6 @@
                 </span>
               </div>
 
-              <!-- Right: Mini Progress Bar, Completion %, Badge & Chevron -->
               <div class="flex items-center space-x-4 shrink-0 font-mono text-xs">
                 <div class="hidden sm:flex items-center space-x-2">
                   <div class="w-20 h-1.5 bg-slate-900 rounded-full overflow-hidden border border-slate-700">
@@ -309,6 +315,16 @@ const phaseGroups = [
   'Phase 7: Version 1.0 Release (GA)'
 ];
 
+const defaultCollapsedState: Record<string, boolean> = {
+  'Phase 1: Foundation': true,
+  'Phase 2: Architecture': true,
+  'Phase 3: Documentation': true,
+  'Phase 4: Business Framework': true,
+  'Phase 5: Production Hardening': true,
+  'Phase 6: Release Engineering': false, // Active phase expanded by default
+  'Phase 7: Version 1.0 Release (GA)': true
+};
+
 const phase4WorkPackages = computed<WorkPackageItem[]>(() => {
   const m14 = docsStore.milestones.find(m => m.id === 'M14');
   if (m14?.workPackages) return m14.workPackages;
@@ -331,19 +347,21 @@ const phase4WorkPackages = computed<WorkPackageItem[]>(() => {
 
 onMounted(() => {
   try {
-    const saved = localStorage.getItem('roadmap_expanded_phases');
+    const saved = localStorage.getItem('roadmap_expanded_phases_v2');
     if (saved !== null) {
-      collapsedPhases.value = JSON.parse(saved);
+      collapsedPhases.value = { ...defaultCollapsedState, ...JSON.parse(saved) };
+    } else {
+      collapsedPhases.value = { ...defaultCollapsedState };
     }
   } catch (err) {
-    // Ignore storage errors
+    collapsedPhases.value = { ...defaultCollapsedState };
   }
 });
 
 const togglePhase = (phaseName: string) => {
   collapsedPhases.value[phaseName] = !collapsedPhases.value[phaseName];
   try {
-    localStorage.setItem('roadmap_expanded_phases', JSON.stringify(collapsedPhases.value));
+    localStorage.setItem('roadmap_expanded_phases_v2', JSON.stringify(collapsedPhases.value));
   } catch (err) {
     // Ignore storage errors
   }
@@ -359,7 +377,7 @@ const toggleAllPhases = () => {
     collapsedPhases.value[name] = nextState;
   });
   try {
-    localStorage.setItem('roadmap_expanded_phases', JSON.stringify(collapsedPhases.value));
+    localStorage.setItem('roadmap_expanded_phases_v2', JSON.stringify(collapsedPhases.value));
   } catch (err) {
     // Ignore storage errors
   }
@@ -371,16 +389,18 @@ const getMilestonesByPhase = (phaseName: string) => {
 
 const getPhaseCount = (phaseName: string) => {
   if (phaseName.includes('Phase 4')) return 13;
+  if (phaseName.includes('Phase 5')) return 4;
   return getMilestonesByPhase(phaseName).length;
 };
 
 const getCompletedCount = (phaseName: string) => {
   if (phaseName.includes('Phase 4')) return 13;
-  return getMilestonesByPhase(phaseName).filter(m => m.status === 'COMPLETED').length;
+  if (phaseName.includes('Phase 5')) return 4;
+  return getMilestonesByPhase(phaseName).filter(m => m.status === 'COMPLETED' || m.status === 'BASELINE').length;
 };
 
 const getPhaseCompletionPercentage = (phaseName: string) => {
-  if (phaseName.includes('Phase 4')) return 100;
+  if (phaseName.includes('Phase 4') || phaseName.includes('Phase 5')) return 100;
   const total = getPhaseCount(phaseName);
   if (total === 0) return 0;
   const completed = getCompletedCount(phaseName);
@@ -393,40 +413,42 @@ const getPhaseShortTitle = (phaseName: string) => {
 
 const getPhaseHeaderClass = (num: number) => {
   if (num <= 3) return 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300';
-  if (num === 4) return 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300';
-  if (num === 5) return 'bg-blue-500/10 border-blue-500/30 text-blue-300';
+  if (num === 4) return 'bg-teal-500/15 border-teal-500/30 text-teal-300';
+  if (num === 5) return 'bg-blue-500/15 border-blue-500/30 text-blue-300';
   if (num === 6) return 'bg-slate-800 border-slate-700 text-slate-400';
-  return 'bg-amber-500/10 border-amber-500/20 text-amber-300';
+  return 'bg-purple-500/10 border-purple-500/20 text-purple-300';
 };
 
 const getPhaseBadgeClass = (num: number) => {
   if (num <= 3) return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
-  if (num === 4) return 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30';
-  if (num === 5) return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
+  if (num === 4) return 'bg-teal-500/15 text-teal-300 border-teal-500/30';
+  if (num === 5) return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
   if (num === 6) return 'bg-slate-800 text-slate-400 border-slate-700';
-  return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+  return 'bg-purple-500/10 text-purple-400 border-purple-500/20';
 };
 
 const getPhaseBadgeText = (num: number) => {
   if (num <= 3) return 'COMPLETED';
   if (num === 4) return 'ARCHIVED';
-  if (num === 5) return 'CURRENT';
+  if (num === 5) return 'BASELINE';
   if (num === 6) return 'PLANNED';
-  return 'TARGET';
+  return 'GOAL';
 };
 
 const getPhaseDescription = (num: number) => {
   if (num === 1) return 'Core Extension MV3 Scaffolding, Storage Adapter & Browser Lifecycle Engine';
   if (num === 2) return 'Enterprise Event Bus Architecture Design, SAD & Revision Addendum';
   if (num === 3) return 'Documentation Repository, Governance, Active Context System & Portal v1.0';
-  if (num === 4) return 'Business Execution Framework Migration Complete (13 Work Packages Finished)';
-  if (num === 5) return 'Performance Benchmark, Reliability, Observability & Security Compliance Audit';
+  if (num === 4) return 'Business Framework Migration Complete (13 Work Packages Finished)';
+  if (num === 5) return 'Production Hardening Complete — Baseline v0.5.0 (Benchmark, Reliability, Observability & Integration)';
   if (num === 6) return 'CI/CD Pipeline, Automated Testing, Release Packaging & Web Store Submission';
-  return 'General Availability Release (v1.0.0 GA)';
+  return 'General Availability Release Goal (v1.0.0 GA)';
 };
 
 const getStatusBadgeClass = (status: string) => {
   if (status === 'COMPLETED') return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+  if (status === 'BASELINE') return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
+  if (status === 'ARCHIVED') return 'bg-teal-500/15 text-teal-300 border-teal-500/30';
   if (status === 'IN_PROGRESS') return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
   if (status === 'BLOCKED') return 'bg-red-500/10 text-red-400 border-red-500/20';
   return 'bg-slate-800 text-slate-400 border-slate-700';

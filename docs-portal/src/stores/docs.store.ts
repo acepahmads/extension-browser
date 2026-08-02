@@ -5,7 +5,7 @@ import { MetadataEngine, DocMetadata } from '@/services/metadata-engine';
 export interface PhaseItem {
   id: string;
   name: string;
-  status: 'COMPLETED' | 'IN_PROGRESS' | 'PLANNED' | 'BLOCKED';
+  status: 'COMPLETED' | 'IN_PROGRESS' | 'PLANNED' | 'BLOCKED' | 'ARCHIVED' | 'BASELINE';
   date?: string;
   summary?: string;
   objectives?: string[];
@@ -53,7 +53,7 @@ export interface MilestoneItem {
   sprint: string;
   category: 'Foundation' | 'Architecture' | 'Documentation' | 'Development' | 'Platform';
   phaseGroup: string;
-  status: 'COMPLETED' | 'IN_PROGRESS' | 'PLANNED' | 'BLOCKED';
+  status: 'COMPLETED' | 'IN_PROGRESS' | 'PLANNED' | 'BLOCKED' | 'ARCHIVED' | 'BASELINE';
   completion: number;
   date: string;
   summary: string;
@@ -66,8 +66,13 @@ export interface MilestoneItem {
   validationStats?: EngineeringValidationStats;
   progressBreakdown?: {
     foundation: number;
+    architecture?: number;
+    documentation?: number;
     subscriberMigration: number;
     businessFramework?: number;
+    productionHardening?: number;
+    releaseEngineering?: number;
+    gaRelease?: number;
     legacyRemoval: number;
     overallStatus: string;
   };
@@ -112,17 +117,15 @@ export const useDocsStore = defineStore('docs', () => {
   const portalSettings = ref({
     theme: 'dark',
     dashboardLayout: 'grid',
-    defaultSprint: 'Sprint 3B',
+    defaultSprint: 'Sprint 5',
     animations: true,
     density: 'comfortable',
     autoSync: true
   });
 
-  // Dynamic Reports Collection (Automatically includes Phase-02.md and all future markdown reports!)
+  // Dynamic Reports Collection
   const reportsList = computed<ReportItem[]>(() => {
     const list: ReportItem[] = [];
-    
-    // Add explicitly parsed markdown reports & phase reports
     rawDocuments.value.forEach((doc, idx) => {
       if (doc.type === 'report' || doc.type === 'phase' || doc.type === 'milestone') {
         list.push({
@@ -137,7 +140,6 @@ export const useDocsStore = defineStore('docs', () => {
         });
       }
     });
-
     return list;
   });
 
@@ -173,12 +175,12 @@ export const useDocsStore = defineStore('docs', () => {
       },
       {
         id: 'ADR-0004',
-        title: 'V8 Generational Memory Strategy Over Object Pooling',
+        title: 'Production Integration Pipeline & Hardening Architecture',
         status: 'ACCEPTED',
-        sprint: 'Sprint 3A Rev',
-        date: '2026-07-31',
-        context: 'Evaluate memory management strategy for high-frequency short-lived event envelopes.',
-        decision: 'Rely on modern V8 Generational Garbage Collection. Removed object pooling recommendation.'
+        sprint: 'Sprint 4',
+        date: '2026-08-01',
+        context: 'Wrap production business handlers with zero-overhead feature-gated resilience and observability wrappers.',
+        decision: 'Implemented IntegrationPipeline & IntegrationMiddleware with dynamic feature flags and zero-bypass fallback.'
       }
     ];
     return list;
@@ -186,7 +188,7 @@ export const useDocsStore = defineStore('docs', () => {
 
   // Dynamic Milestones Collection
   const milestones = ref<MilestoneItem[]>([
-    // PHASE 1: FOUNDATION
+    // PHASE 1: FOUNDATION (COMPLETED - 100% READ ONLY)
     {
       id: 'M00',
       name: 'Project Vision & Strategy Scope',
@@ -248,7 +250,7 @@ export const useDocsStore = defineStore('docs', () => {
       notes: '100% Audit Score'
     },
 
-    // PHASE 2: ARCHITECTURE
+    // PHASE 2: ARCHITECTURE (COMPLETED - 100% READ ONLY)
     {
       id: 'M04',
       name: 'Enterprise Event Bus Architecture Design',
@@ -280,7 +282,7 @@ export const useDocsStore = defineStore('docs', () => {
       notes: 'Architecture frozen'
     },
 
-    // PHASE 3: DOCUMENTATION
+    // PHASE 3: DOCUMENTATION (COMPLETED - 100% READ ONLY)
     {
       id: 'M07',
       name: 'Engineering Documentation Foundation',
@@ -354,47 +356,10 @@ export const useDocsStore = defineStore('docs', () => {
       deliverables: ['MetadataEngine.ts', 'Dynamic Reports Sync', 'Zero-Manual Registry Architecture', 'Portal v1.0 Final'],
       owner: 'Frontend Lead',
       reviewStatus: 'Approved',
-      notes: 'Portal v1.0 Final Reached',
-      phases: [
-        {
-          id: 'Phase-01',
-          name: 'Phase 1: Core Foundation (Event Bus)',
-          status: 'COMPLETED',
-          date: '2026-07-31',
-          summary: 'BusEventEnvelope v1.0, EventBusCore engine, pub/sub API, wildcard matcher, 4/4 spec tests.',
-          filesAdded: ['src/core/event-bus/event-bus.core.ts', 'src/core/event-bus/types/event.types.ts'],
-          testingResult: '4/4 Spec Test Cases Passed',
-          buildResult: 'Clean Build in 1.46s (0 Errors)'
-        },
-        {
-          id: 'Phase-02',
-          name: 'Phase 2: Pipeline, Resilience & Metrics',
-          status: 'COMPLETED',
-          date: '2026-07-31',
-          summary: 'Middleware Pipeline, Event Validator, Schema Registry, Priority Dispatcher Queue, Metrics Collector, DLQ, and Error Handler.',
-          filesAdded: [
-            'src/core/event-bus/middleware/middleware-pipeline.ts',
-            'src/core/event-bus/validation/schema-registry.ts',
-            'src/core/event-bus/validation/event-validator.ts',
-            'src/core/event-bus/dispatchers/priority-dispatcher.ts',
-            'src/core/event-bus/metrics/metrics-collector.ts',
-            'src/core/event-bus/queues/dead-letter-queue.ts',
-            'src/core/event-bus/handlers/error-handler.ts',
-            'src/core/event-bus/event-bus-phase2.spec.ts'
-          ],
-          testingResult: '5/5 Spec Test Cases Passed',
-          buildResult: 'Clean Build in 1.49s (0 Errors)'
-        },
-        {
-          id: 'Phase-03',
-          name: 'Phase 3: IPC Bridges & System Integration',
-          status: 'PLANNED',
-          summary: 'Service Worker <-> UI IPC Event Bridges and full module wiring.'
-        }
-      ]
+      notes: 'Portal v1.0 Final Reached'
     },
 
-    // PHASE 4: BUSINESS FRAMEWORK
+    // PHASE 4: BUSINESS FRAMEWORK (ARCHIVED - 100% READ ONLY)
     {
       id: 'M12',
       name: 'Middleware & Event Bus Core (Phase 2)',
@@ -431,20 +396,20 @@ export const useDocsStore = defineStore('docs', () => {
       sprint: 'Sprint 3B.4',
       category: 'Development',
       phaseGroup: 'Phase 4: Business Framework',
-      status: 'COMPLETED',
+      status: 'ARCHIVED',
       completion: 100,
       date: '2026-07-31',
-      summary: 'Business Execution Framework (Stage 1), Workspace Handler (Stage 2), Storage Handler (Stage 3), Lifecycle Handler (Stage 4), Shadow Comparator (Stage 5), Validation Campaign (Stage 5.5), Business-Only Cutover (Stage 6), ActivityService Decoupling (Stage 7.1), and Infrastructure Cleanup (Stage 7.2) Completed.',
+      summary: 'Business Framework Migration Complete (13 Work Packages Finished). Business Execution Framework is the sole authoritative production engine.',
       deliverables: ['BusinessDispatcher.ts', 'WorkspaceBusinessHandler.ts', 'StorageBusinessHandler.ts', 'LifecycleBusinessHandler.ts', 'ShadowComparator.ts', 'ShadowValidationService.ts', 'business-cutover.spec.ts'],
       owner: 'Core Team',
       reviewStatus: 'Approved',
-      notes: 'WP-4 Stages 1-7.2 Completed (100%) — Sprint 4 WP-5 Production Hardening Next',
+      notes: '13 Work Packages Finished (100%)',
       progressBreakdown: {
         foundation: 100,
         subscriberMigration: 100,
         businessFramework: 100,
         legacyRemoval: 100,
-        overallStatus: 'WP-4 Completed (100%)'
+        overallStatus: 'Phase 4 Archived (100%)'
       },
       validationStats: {
         publisherAudit: 'PASS (13 / 13)',
@@ -463,101 +428,23 @@ export const useDocsStore = defineStore('docs', () => {
         legacyRemoval: 'COMPLETE'
       },
       workPackages: [
-        {
-          id: 'WP-1',
-          name: 'Runtime Publisher Wiring',
-          status: 'Completed',
-          description: 'Wire all 13 runtime publishers into EventBusFacade while preserving ActivityService.',
-          icon: '✅'
-        },
-        {
-          id: 'WP-2',
-          name: 'Dual Publish & Feature Flag',
-          status: 'Completed',
-          description: 'Introduce dual publishing and runtime feature flags without changing business behavior.',
-          icon: '✅'
-        },
-        {
-          id: 'WP-2.1',
-          name: 'Configuration Hardening',
-          status: 'Completed',
-          description: 'Synchronize persisted EventBus feature flags during startup and provide backward compatibility.',
-          icon: '✅'
-        },
-        {
-          id: 'WP-3',
-          name: 'Subscriber Registry (Stages 1-5)',
-          status: 'Completed',
-          description: 'Implemented Analytics, Metrics, Workspace, Storage, and Lifecycle subscriber modules.',
-          icon: '✅'
-        },
-        {
-          id: 'WP-4.1',
-          name: 'Business Framework Core',
-          status: 'Completed',
-          description: 'Created BusinessDispatcher, BusinessRegistry, BusinessSubscriber, and exponential retry engine.',
-          icon: '✅'
-        },
-        {
-          id: 'WP-4.2',
-          name: 'Workspace Business Handler',
-          status: 'Completed',
-          description: 'Implemented WorkspaceBusinessHandler validating workspace.* topics without side-effects.',
-          icon: '✅'
-        },
-        {
-          id: 'WP-4.3',
-          name: 'Storage Business Handler',
-          status: 'Completed',
-          description: 'Implemented StorageBusinessHandler validating storage.* topics and duplicate key detection.',
-          icon: '✅'
-        },
-        {
-          id: 'WP-4.4',
-          name: 'Lifecycle Business Handler',
-          status: 'Completed',
-          description: 'Implemented LifecycleBusinessHandler validating browser window, tab, and navigation topics.',
-          icon: '✅'
-        },
-        {
-          id: 'WP-4.5',
-          name: 'Shadow Comparator Engine',
-          status: 'Completed',
-          description: 'Implemented ShadowComparator and ShadowMetrics for non-blocking parity verification.',
-          icon: '✅'
-        },
-        {
-          id: 'WP-4.5.5',
-          name: 'Shadow Validation Campaign',
-          status: 'Completed',
-          description: 'Implemented ShadowValidationService generating health score and migration readiness telemetry.',
-          icon: '✅'
-        },
-        {
-          id: 'WP-4.6',
-          name: 'Business-Only Cutover',
-          status: 'Completed',
-          description: 'Business Framework enabled as authoritative production execution engine.',
-          icon: '✅'
-        },
-        {
-          id: 'WP-4.7.1',
-          name: 'ActivityService Decoupling',
-          status: 'Completed',
-          description: 'Decoupled ActivityService.createEvent calls from all runtime service listeners.',
-          icon: '✅'
-        },
-        {
-          id: 'WP-4.7.2',
-          name: 'Legacy Infrastructure Cleanup',
-          status: 'Completed',
-          description: 'Cleaned up legacy bridge wrappers, migration docstrings, and dead imports.',
-          icon: '✅'
-        }
+        { id: 'WP-1', name: 'Runtime Publisher Wiring', status: 'Completed', description: 'Wire all 13 runtime publishers into EventBusFacade.', icon: '✅' },
+        { id: 'WP-2', name: 'Dual Publish & Feature Flag', status: 'Completed', description: 'Introduce dual publishing and runtime feature flags.', icon: '✅' },
+        { id: 'WP-2.1', name: 'Configuration Hardening', status: 'Completed', description: 'Synchronize persisted EventBus feature flags.', icon: '✅' },
+        { id: 'WP-3', name: 'Subscriber Registry', status: 'Completed', description: 'Implemented Analytics, Metrics, Workspace, Storage, and Lifecycle subscribers.', icon: '✅' },
+        { id: 'WP-4.1', name: 'Business Framework Core', status: 'Completed', description: 'Created BusinessDispatcher, BusinessRegistry, and retry engine.', icon: '✅' },
+        { id: 'WP-4.2', name: 'Workspace Business Handler', status: 'Completed', description: 'Implemented WorkspaceBusinessHandler validating workspace.* topics.', icon: '✅' },
+        { id: 'WP-4.3', name: 'Storage Business Handler', status: 'Completed', description: 'Implemented StorageBusinessHandler validating storage.* topics.', icon: '✅' },
+        { id: 'WP-4.4', name: 'Lifecycle Business Handler', status: 'Completed', description: 'Implemented LifecycleBusinessHandler validating browser window topics.', icon: '✅' },
+        { id: 'WP-4.5', name: 'Shadow Comparator Engine', status: 'Completed', description: 'Implemented ShadowComparator and ShadowMetrics.', icon: '✅' },
+        { id: 'WP-4.5.5', name: 'Shadow Validation Campaign', status: 'Completed', description: 'Implemented ShadowValidationService generating health telemetry.', icon: '✅' },
+        { id: 'WP-4.6', name: 'Business-Only Cutover', status: 'Completed', description: 'Business Framework enabled as authoritative production engine.', icon: '✅' },
+        { id: 'WP-4.7.1', name: 'ActivityService Decoupling', status: 'Completed', description: 'Decoupled ActivityService.createEvent calls from all listeners.', icon: '✅' },
+        { id: 'WP-4.7.2', name: 'Legacy Infrastructure Cleanup', status: 'Completed', description: 'Cleaned up legacy bridge wrappers and dead imports.', icon: '✅' }
       ]
     },
 
-    // PHASE 5: PRODUCTION HARDENING (BASELINE v0.5.0 — 4/4 COMPLETED)
+    // PHASE 5: PRODUCTION HARDENING (BASELINE v0.5.0 - 100% READ ONLY)
     {
       id: 'M15',
       name: 'WP-5.1: Performance Benchmark Framework',
@@ -609,7 +496,7 @@ export const useDocsStore = defineStore('docs', () => {
       sprint: 'Sprint 4 (WP-5.4)',
       category: 'Platform',
       phaseGroup: 'Phase 5: Production Hardening',
-      status: 'COMPLETED',
+      status: 'BASELINE',
       completion: 100,
       date: '2026-08-02',
       summary: 'IntegrationPipeline, IntegrationMiddleware, runtime feature flags, zero-bypass fallback, BusinessDispatcher wiring.',
@@ -619,7 +506,7 @@ export const useDocsStore = defineStore('docs', () => {
       notes: 'v0.5.0 Baseline Complete'
     },
 
-    // PHASE 6: RELEASE ENGINEERING (PLANNED — 0/5 COMPLETED)
+    // PHASE 6: RELEASE ENGINEERING (PLANNED — 0/5 COMPLETED - READ ONLY: NO)
     {
       id: 'M19',
       name: 'WP-6.1: Recovery & Resilience Hooks',
@@ -650,12 +537,10 @@ export const useDocsStore = defineStore('docs', () => {
       reviewStatus: 'Pending',
       notes: 'Roadmap Sprint 5'
     },
-
-    // PHASE 6: RELEASE ENGINEERING
     {
       id: 'M21',
-      name: 'CI/CD Pipeline & Build Automation',
-      sprint: 'Sprint 5',
+      name: 'WP-6.3: CI/CD Build Matrix Automation',
+      sprint: 'Sprint 5 (WP-6.3)',
       category: 'Platform',
       phaseGroup: 'Phase 6: Release Engineering',
       status: 'PLANNED',
@@ -669,8 +554,8 @@ export const useDocsStore = defineStore('docs', () => {
     },
     {
       id: 'M22',
-      name: 'Automated Testing & Regression Suite',
-      sprint: 'Sprint 5',
+      name: 'WP-6.4: End-to-End Automated Regression Suite',
+      sprint: 'Sprint 5 (WP-6.4)',
       category: 'Platform',
       phaseGroup: 'Phase 6: Release Engineering',
       status: 'PLANNED',
@@ -684,53 +569,23 @@ export const useDocsStore = defineStore('docs', () => {
     },
     {
       id: 'M23',
-      name: 'Release Packaging & MV3 Signed Bundle',
-      sprint: 'Sprint 5',
+      name: 'WP-6.5: Release Packaging & Web Store Submission',
+      sprint: 'Sprint 5 (WP-6.5)',
       category: 'Platform',
       phaseGroup: 'Phase 6: Release Engineering',
       status: 'PLANNED',
       completion: 0,
       date: 'Pending',
-      summary: 'Production minification, source map isolation, and MV3 extension packaging.',
-      deliverables: ['Signed Extension Zip', 'Release Manifest'],
-      owner: 'DevOps Team',
-      reviewStatus: 'Pending',
-      notes: 'Roadmap Sprint 5'
-    },
-    {
-      id: 'M24',
-      name: 'Chrome Web Store Submission',
-      sprint: 'Sprint 5',
-      category: 'Platform',
-      phaseGroup: 'Phase 6: Release Engineering',
-      status: 'PLANNED',
-      completion: 0,
-      date: 'Pending',
-      summary: 'Store listing metadata, privacy policy disclosures, and Web Store publishing submission.',
-      deliverables: ['Chrome Web Store Listing', 'Privacy Disclosures'],
-      owner: 'Release Team',
-      reviewStatus: 'Pending',
-      notes: 'Roadmap Sprint 5'
-    },
-    {
-      id: 'M25',
-      name: 'Versioning & Release Notes',
-      sprint: 'Sprint 5',
-      category: 'Platform',
-      phaseGroup: 'Phase 6: Release Engineering',
-      status: 'PLANNED',
-      completion: 0,
-      date: 'Pending',
-      summary: 'Semantic versioning automation, CHANGELOG generation, and release release notes.',
-      deliverables: ['CHANGELOG.md', 'v1.0.0 Release Notes'],
+      summary: 'Production minification, source map isolation, and Web Store publishing submission.',
+      deliverables: ['Signed Extension Zip', 'Chrome Web Store Listing'],
       owner: 'Release Team',
       reviewStatus: 'Pending',
       notes: 'Roadmap Sprint 5'
     },
 
-    // PHASE 7: VERSION 1.0 RELEASE (GA)
+    // PHASE 7: VERSION 1.0 RELEASE GA (GOAL - READ ONLY: NO)
     {
-      id: 'M26',
+      id: 'M24',
       name: 'Version 1.0 General Availability Release',
       sprint: 'Sprint 6 Final',
       category: 'Platform',
@@ -742,7 +597,7 @@ export const useDocsStore = defineStore('docs', () => {
       deliverables: ['v1.0.0 General Availability Release'],
       owner: 'Lead Architect',
       reviewStatus: 'Pending',
-      notes: 'Target Version 1.0 General Availability'
+      notes: 'Target Goal: Version 1.0 General Availability'
     }
   ]);
 
@@ -750,21 +605,24 @@ export const useDocsStore = defineStore('docs', () => {
   const projectInfo = computed(() => {
     const totalDocs = rawDocuments.value.length;
     const reportDocs = reportsList.value.length;
-    const completedMilestonesCount = milestones.value.filter(m => m.status === 'COMPLETED').length;
+    const completedMilestonesCount = milestones.value.filter(m => m.status === 'COMPLETED' || m.status === 'ARCHIVED' || m.status === 'BASELINE').length;
 
     return {
       projectName: 'SPPG Companion Platform (BGN-Extension)',
       version: 'v0.5.0',
-      currentSprint: 'Sprint 4 (Production Hardening & Runtime Integration)',
-      currentMilestone: 'M18 (Production Integration & Runtime Wiring)',
-      currentPhaseGroup: 'Phase 5: Production Hardening',
+      currentSprint: 'Sprint 5 (Release Engineering & Build Automation)',
+      currentMilestone: 'M19 (Release Engineering & CI/CD Pipeline)',
+      currentPhaseGroup: 'Phase 6: Release Engineering',
       currentModule: 'src/core/integration/integration.pipeline.ts',
-      nextSprint: 'Sprint 5 (Phase 6 Release Engineering)',
-      architectureStatus: 'PRODUCTION READY (v0.5.0 Hardening Complete)',
-      buildStatus: 'CLEAN (Built in 2.33s, 0 Errors)',
-      testingStatus: 'VERIFIED (11/11 Test Suites Passed)',
-      documentationStatus: 'ENTERPRISE DYNAMIC GOVERNANCE ACTIVE (100%)',
-      overallCompletion: Math.round((completedMilestonesCount / milestones.value.length) * 1000) / 10,
+      nextSprint: 'Sprint 6 (Storage Engine & Persistence Adapter)',
+      architectureStatus: 'PRODUCTION READY (v0.5.0 Hardening Baseline)',
+      repositoryStatus: 'Production Ready',
+      currentBaseline: 'v0.5.0',
+      repositoryHealth: 'Excellent',
+      buildStatus: 'PASS',
+      typeCheckStatus: 'PASS',
+      testSuites: '11 / 11 PASS',
+      overallCompletion: 80.0,
       totalMilestones: milestones.value.length,
       completedMilestones: completedMilestonesCount,
       remainingMilestones: milestones.value.length - completedMilestonesCount,
@@ -772,6 +630,17 @@ export const useDocsStore = defineStore('docs', () => {
       adrCount: adrList.value.length,
       reportCount: reportDocs,
       testCoverage: '100% Core Pipeline, Benchmark, Reliability & Observability',
+
+      progressSummary: {
+        foundation: 100,
+        architecture: 100,
+        documentation: 100,
+        businessFramework: 100,
+        productionHardening: 100,
+        releaseEngineering: 0,
+        gaRelease: 0,
+        overallProgress: 80
+      },
       
       buildMetrics: {
         status: 'PASSING',
@@ -808,7 +677,7 @@ export const useDocsStore = defineStore('docs', () => {
         docsCoverage: '100%',
         markdownFiles: totalDocs,
         reportsCount: reportDocs,
-        milestonesCount: 26,
+        milestonesCount: 24,
         architectureDocsCount: 6,
         pagesCount: 10,
         lastUpdated: '2026-08-02'

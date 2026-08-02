@@ -5,6 +5,8 @@
 > **Header Badge**: BASELINE  
 > **Subtitle**: Production Hardening Complete  
 > **Git Baseline**: `v0.5.0`  
+> **Repository**: Production Ready  
+> **Overall Progress**: ~80%  
 
 ---
 
@@ -23,46 +25,36 @@ SPPG Companion is an enterprise-grade developer companion built on Clean Archite
 
 ---
 
-## 🏷️ Baseline Status
+## 🏷️ Repository Header Summary
 
-- **Header Badge**: `BASELINE`
-- **Subtitle**: `Production Hardening Complete`
-- **Git Baseline**: `v0.5.0`
-- **Version**: `v0.5.0`
-- **Phase 5 Status**: `BASELINE` (100% — 4 / 4 Work Packages Completed)
-- **Phase 6 Status**: `PLANNED` (0% — 0 / 5 Work Packages Completed)
-- **Repository State**: `Production Ready`
-- **Phase 5 Completed Scope**:
-  1. WP-5.1 Performance Benchmark Framework (`src/core/performance/`)
-  2. WP-5.2 Reliability & Fault Tolerance (`src/core/reliability/`)
-  3. WP-5.3 Observability & Metrics Platform (`src/core/observability/`)
-  4. WP-5.4 Production Integration Layer & Runtime Wiring (`src/core/integration/`)
-- **Next Target**: Phase 6 — Release Engineering & Build Automation.
+- **Repository**: `Production Ready`
+- **Current Baseline**: `v0.5.0`
+- **Architecture**: `Complete`
+- **Current Sprint**: `Sprint 5`
+- **Current Phase**: `Release Engineering`
+- **Repository Health**: `Excellent`
+- **Build Status**: `PASS` (Built in 2.33s)
+- **Type Check**: `PASS` (0 Errors)
+- **Test Suites**: `11 / 11 PASS`
+- **Status Chips**: `[Production Ready]` `[Build PASS]` `[Type Check PASS]` `[11/11 Tests]`
 
 ---
 
-## 🛠️ Execution & Architectural Matrix
+## 📊 Phase Status Matrix & Milestone Timeline
 
-| Execution Metric | Current Value | Authority Path |
-| :--- | :---: | :---: |
-| **Header Badge** | `BASELINE` | Approved Repository Baseline |
-| **Subtitle** | `Production Hardening Complete` | Phase 5 Hardening Verified |
-| **Git Baseline** | `v0.5.0` | Tagged Baseline v0.5.0 |
-| **Phase 5 Completion** | `100% (4 / 4)` | WP-5.1, WP-5.2, WP-5.3, WP-5.4 Completed |
-| **Phase 6 Status** | `PLANNED (0 / 5)` | Release Engineering Planned (0%) |
-| **Architecture** | `COMPLETE` | Production-Ready Event-Driven Architecture |
-| **Business Framework** | `PRODUCTION` | Sole Production Authority |
-| **Performance Benchmark** | `COMPLETE` | Microsecond Timing & Layer Telemetry |
-| **Reliability Engine** | `COMPLETE` | Retry Policy, Timeout Guard & Health Monitor |
-| **Observability Platform** | `COMPLETE` | Dashboard Model, Telemetry Trends & Reports |
-| **Production Integration** | `COMPLETE` | Feature-Flagged Execution Pipeline |
-| **Runtime Wiring** | `VERIFIED` | Dispatcher $\rightarrow$ Integration Middleware |
-| **Rollback Capability** | `READY` | Instant Flag-Flip Bypass |
-| **Repository Health** | `EXCELLENT` | 0 Compilation Errors / 0 Type Errors |
-| **Technical Debt** | `LOW` | Clean Modular Codebase |
-| **Build Status** | `PASS` | Built Cleanly in 2.33s |
-| **Type Check** | `PASS` | 0 Errors via `vue-tsc --noEmit` |
-| **Test Coverage** | `11 / 11 PASS` | 100% Success Rate Across All Specs |
+```
+Phase 1 (Completed) ──> Phase 2 (Completed) ──> Phase 3 (Completed) ──> Phase 4 (Archived) ──> Phase 5 (Baseline v0.5.0) ──> Phase 6 (Planned) ──> Phase 7 (Goal)
+```
+
+| Phase ID | Phase Name | Status | Completion | Read-Only | Scope / Notes |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| **Phase 1** | Foundation | `COMPLETED` | 100% | `YES` | Core MV3 Scaffolding & Lifecycle Engine |
+| **Phase 2** | Architecture | `COMPLETED` | 100% | `YES` | Enterprise Event Bus Architecture & SAD |
+| **Phase 3** | Documentation | `COMPLETED` | 100% | `YES` | Repository Governance, Active Context & Portal v1.0 |
+| **Phase 4** | Business Framework | `ARCHIVED` | 100% | `YES` | Business Framework Migration Complete (13 WPs Finished) |
+| **Phase 5** | Production Hardening | `BASELINE` | 100% | `YES` | Baseline v0.5.0 (Benchmark, Reliability, Observability, Integration) |
+| **Phase 6** | Release Engineering | `PLANNED` | 0% | `NO` | Sprint 5 Focus: CI/CD Pipeline, E2E Testing, Web Store Package |
+| **Phase 7** | Version 1.0 Release (GA)| `GOAL` | 0% | `NO` | General Availability Target Goal |
 
 ## 💻 Development & Build Setup
 
