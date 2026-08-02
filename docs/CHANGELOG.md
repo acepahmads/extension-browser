@@ -13,6 +13,21 @@ All notable changes to the SPPG Companion Platform (`BGN-Extension`) will be doc
 
 ---
 
+## [1.3.0] - 2026-08-02
+
+### Milestone M15: Sprint 5 Phase 6 — Distribution Packaging & Store Readiness (WP-6.3)
+#### Added
+- **Distribution Framework**: Isolated under `scripts/distribution/` with zero runtime overhead.
+- **Store Readiness Validator** (`distribution-validator.ts`): Profile validation (`development`, `qa`, `production`, `enterprise`) and Chrome Web Store policy compliance.
+- **Asset Verification Engine** (`asset-validator.ts`): Audits 7 icon sizes (`16`, `32`, `48`, `64`, `128`, `256`, `512`) and promotional assets.
+- **Compatibility Validator** (`compatibility-validator.ts`): Chrome 102+, MV3, Edge Add-ons, and Enterprise Policy sideloading.
+- **Store Metadata Generator** (`metadata-generator.ts`): Produces `store-metadata.json`.
+- **Distribution Checklist Engine** (`distribution-checklist.ts`): 10-point distribution checklist producing `distribution-checklist.md`.
+- **Distribution Report Generator** (`distribution-report.ts`): Generates `distribution-report.md`, `distribution-summary.json`, and `store-readiness-report.md`.
+- **Master Distribution Orchestrator** (`distribution-manager.ts`): CLI entry point (`npm run distribution:build`).
+
+---
+
 ## [1.2.0] - 2026-07-31
 
 ### Milestone M07: Sprint 3B Phase 3 — Event Bus Subscriber Layer
