@@ -875,6 +875,14 @@ export const useDocsStore = defineStore('docs', () => {
 
   const syncReport = computed(() => engine.getSyncReport());
 
+  // Milestone Computed Getters for MilestonesView Refactoring
+  const completedMilestones = computed(() => milestones.value.filter(m => m.status === 'COMPLETED'));
+  const plannedMilestones = computed(() => milestones.value.filter(m => m.status === 'PLANNED'));
+  const archivedMilestones = computed(() => milestones.value.filter(m => m.status === 'ARCHIVED'));
+  const baselineMilestones = computed(() => milestones.value.filter(m => m.status === 'BASELINE'));
+  const goalMilestones = computed(() => milestones.value.filter(m => (m.status as string) === 'GOAL' || (m.status as string) === 'GA'));
+  const milestoneCategories = computed(() => Array.from(new Set(milestones.value.map(m => m.category))));
+
   return {
     isDarkMode,
     searchQuery,
@@ -887,6 +895,12 @@ export const useDocsStore = defineStore('docs', () => {
     versionTimeline,
     sprints,
     syncReport,
+    completedMilestones,
+    plannedMilestones,
+    archivedMilestones,
+    baselineMilestones,
+    goalMilestones,
+    milestoneCategories,
     adrList,
     reportsList,
     searchResults,

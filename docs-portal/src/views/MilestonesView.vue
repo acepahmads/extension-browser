@@ -8,9 +8,9 @@
         <div>
           <div class="flex items-center space-x-3 mb-1">
             <span class="px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase">
-              GitLab / Jira Backlog Style Catalog
+              GitLab / Jira Backlog Catalog {{ docsStore.projectInfo.version }}
             </span>
-            <span class="text-xs font-mono text-slate-400">High Density Milestone Index</span>
+            <span class="text-xs font-mono text-slate-400">Baseline {{ docsStore.projectInfo.currentBaseline }} • {{ docsStore.projectInfo.repositoryStatus }}</span>
           </div>
           <h1 class="text-2xl lg:text-3xl font-extrabold font-heading text-slate-100">Milestones Catalog</h1>
           <p class="text-slate-400 text-xs mt-1">Enterprise backlog matrix detailing platform sprint execution records.</p>
@@ -19,12 +19,17 @@
         <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700/60 text-xs font-mono flex items-center space-x-4 shrink-0">
           <div>
             <span class="text-slate-500 block text-[10px]">TOTAL MILESTONES</span>
-            <span class="text-blue-400 font-bold">{{ docsStore.milestones.length }} Registered</span>
+            <span class="text-blue-400 font-bold font-mono">{{ docsStore.milestones.length }} Registered</span>
           </div>
           <div class="h-6 w-px bg-slate-700"></div>
           <div>
             <span class="text-slate-500 block text-[10px]">COMPLETED</span>
-            <span class="text-emerald-400 font-bold">{{ docsStore.projectInfo.completedMilestones }} / {{ docsStore.projectInfo.totalMilestones }}</span>
+            <span class="text-emerald-400 font-bold font-mono">{{ docsStore.projectInfo.completedMilestones }} / {{ docsStore.projectInfo.totalMilestones }}</span>
+          </div>
+          <div class="h-6 w-px bg-slate-700"></div>
+          <div>
+            <span class="text-slate-500 block text-[10px]">PROGRESS</span>
+            <span class="text-emerald-400 font-bold font-mono">{{ docsStore.projectInfo.overallCompletion }}%</span>
           </div>
         </div>
       </div>
@@ -65,7 +70,7 @@
       <div class="flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-800 text-xs font-mono">
         <span class="text-slate-500 text-[11px] mr-1">Filter:</span>
         <button 
-          v-for="filter in ['ALL', 'CURRENT / UPCOMING', 'COMPLETED', 'HISTORY', 'Foundation', 'Architecture', 'Documentation', 'Development', 'Platform']" 
+          v-for="filter in filterOptions" 
           :key="filter"
           @click="activeFilter = filter"
           class="px-2.5 py-1 rounded-lg text-[11px] font-semibold transition"
@@ -121,10 +126,10 @@
             <div class="flex items-center space-x-3 min-w-0 flex-1">
               <!-- Status Icon -->
               <span class="shrink-0">
-                <svg v-if="item.status === 'COMPLETED'" class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg v-if="item.status === 'COMPLETED' || item.status === 'BASELINE'" class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                 </svg>
-                <svg v-else-if="item.status === 'IN_PROGRESS'" class="w-4 h-4 text-blue-400 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg v-else-if="item.status === 'CURRENT' || item.status === 'IN_PROGRESS'" class="w-4 h-4 text-blue-400 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
                 <svg v-else-if="item.status === 'BLOCKED'" class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,7 +146,7 @@
               </span>
 
               <!-- Sprint Tag -->
-              <span class="font-mono text-[11px] text-slate-400 shrink-0 hidden md:inline-block w-24">
+              <span class="font-mono text-[11px] text-slate-400 shrink-0 hidden md:inline-block w-28">
                 {{ item.sprint }}
               </span>
 
@@ -161,7 +166,7 @@
               <!-- Mini Progress Bar -->
               <div class="hidden sm:flex items-center space-x-2">
                 <div class="w-16 h-1.5 bg-slate-900 rounded-full overflow-hidden border border-slate-700">
-                  <div class="h-full bg-blue-500 rounded-full" :style="{ width: item.completion + '%' }"></div>
+                  <div class="h-full bg-emerald-500 rounded-full" :style="{ width: item.completion + '%' }"></div>
                 </div>
                 <span class="font-bold w-10 text-right text-slate-300">{{ item.completion }}%</span>
               </div>
@@ -197,7 +202,13 @@ const activeFilter = ref('ALL');
 const sortBy = ref('id');
 const collapsedCategories = ref<Record<string, boolean>>({});
 
-const categoriesList = ['Foundation', 'Architecture', 'Documentation', 'Development', 'Platform'];
+const filterOptions = computed(() => [
+  'ALL',
+  'COMPLETED',
+  'BASELINE',
+  'ARCHIVED',
+  ...docsStore.milestoneCategories
+]);
 
 const toggleCategory = (cat: string) => {
   collapsedCategories.value[cat] = !collapsedCategories.value[cat];
@@ -219,7 +230,7 @@ const filteredMilestones = computed(() => {
 
   // Filter Category or Status
   if (activeFilter.value !== 'ALL') {
-    if (['COMPLETED', 'IN_PROGRESS', 'PLANNED', 'BLOCKED'].includes(activeFilter.value)) {
+    if (['COMPLETED', 'IN_PROGRESS', 'PLANNED', 'BLOCKED', 'ARCHIVED', 'BASELINE', 'GOAL'].includes(activeFilter.value)) {
       list = list.filter(m => m.status === activeFilter.value);
     } else {
       list = list.filter(m => m.category === activeFilter.value);
@@ -240,7 +251,7 @@ const filteredMilestones = computed(() => {
 
 const activeCategories = computed(() => {
   const set = new Set(filteredMilestones.value.map(m => m.category));
-  return categoriesList.filter(c => set.has(c as any));
+  return docsStore.milestoneCategories.filter(c => set.has(c));
 });
 
 const getMilestonesByCategory = (category: string) => {
@@ -251,14 +262,17 @@ const getCategoryDotClass = (cat: string) => {
   if (cat === 'Foundation') return 'bg-emerald-400';
   if (cat === 'Architecture') return 'bg-blue-400';
   if (cat === 'Documentation') return 'bg-purple-400';
-  if (cat === 'Development') return 'bg-amber-400';
-  return 'bg-slate-500';
+  if (cat === 'Development') return 'bg-teal-400';
+  return 'bg-indigo-400';
 };
 
 const getStatusBadgeClass = (status: string) => {
   if (status === 'COMPLETED') return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
-  if (status === 'IN_PROGRESS') return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+  if (status === 'BASELINE') return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
+  if (status === 'ARCHIVED') return 'bg-teal-500/15 text-teal-300 border-teal-500/30';
+  if (status === 'IN_PROGRESS' || status === 'CURRENT') return 'bg-amber-500/20 text-amber-300 border-amber-500/40 font-bold';
   if (status === 'BLOCKED') return 'bg-red-500/10 text-red-400 border-red-500/20';
+  if (status === 'GOAL' || status === 'GA') return 'bg-purple-500/20 text-purple-300 border-purple-500/30 font-bold';
   return 'bg-slate-800 text-slate-400 border-slate-700';
 };
 
