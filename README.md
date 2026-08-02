@@ -2,10 +2,9 @@
 
 **Enterprise Integration Companion** for Developer Tools, BGN Simulator, and SIPGN analysis.
 
-> **Header Badge**: BASELINE  
-> **Subtitle**: Production Hardening Complete  
-> **Git Baseline**: `v0.5.0`  
-> **Repository**: Production Ready  
+> **Current Badge**: CURRENT (Phase 6 Release Engineering Active)  
+> **Current Baseline**: `v0.5.0` (Production Hardening Complete)  
+> **Repository**: 🟢 Production Ready  
 > **Overall Progress**: ~80%  
 
 ---
@@ -25,36 +24,40 @@ SPPG Companion is an enterprise-grade developer companion built on Clean Archite
 
 ---
 
-## 🏷️ Repository Header Summary
+## 🏷️ Global Repository Summary
 
-- **Repository**: `Production Ready`
+- **Repository Status**: 🟢 `Production Ready`
 - **Current Baseline**: `v0.5.0`
 - **Architecture**: `Complete`
 - **Current Sprint**: `Sprint 5`
-- **Current Phase**: `Release Engineering`
-- **Repository Health**: `Excellent`
-- **Build Status**: `PASS` (Built in 2.33s)
-- **Type Check**: `PASS` (0 Errors)
+- **Current Phase**: `Phase 6 – Release Engineering`
+- **Build Status**: `PASS`
+- **Type Check**: `PASS`
 - **Test Suites**: `11 / 11 PASS`
+- **Repository Health**: `Excellent`
 - **Status Chips**: `[Production Ready]` `[Build PASS]` `[Type Check PASS]` `[11/11 Tests]`
 
 ---
 
-## 📊 Phase Status Matrix & Milestone Timeline
+## 🗺️ Product Version Release Timeline
 
 ```
-Phase 1 (Completed) ──> Phase 2 (Completed) ──> Phase 3 (Completed) ──> Phase 4 (Archived) ──> Phase 5 (Baseline v0.5.0) ──> Phase 6 (Planned) ──> Phase 7 (Goal)
+v0.1.0 Foundation (Completed) ──> v0.2.0 EventBus (Completed) ──> v0.3.0 Business Fwk (Completed) ──> v0.4.0 Migration (Archived) ──> v0.5.0 Hardening (BASELINE) ──> v0.6.0 Release Eng (CURRENT) ──> v0.7.0 Beta (Planned) ──> v0.9.0 RC (Planned) ──> v1.0.0 GA (GOAL)
 ```
 
-| Phase ID | Phase Name | Status | Completion | Read-Only | Scope / Notes |
-| :--- | :--- | :---: | :---: | :---: | :--- |
-| **Phase 1** | Foundation | `COMPLETED` | 100% | `YES` | Core MV3 Scaffolding & Lifecycle Engine |
-| **Phase 2** | Architecture | `COMPLETED` | 100% | `YES` | Enterprise Event Bus Architecture & SAD |
-| **Phase 3** | Documentation | `COMPLETED` | 100% | `YES` | Repository Governance, Active Context & Portal v1.0 |
-| **Phase 4** | Business Framework | `ARCHIVED` | 100% | `YES` | Business Framework Migration Complete (13 WPs Finished) |
-| **Phase 5** | Production Hardening | `BASELINE` | 100% | `YES` | Baseline v0.5.0 (Benchmark, Reliability, Observability, Integration) |
-| **Phase 6** | Release Engineering | `PLANNED` | 0% | `NO` | Sprint 5 Focus: CI/CD Pipeline, E2E Testing, Web Store Package |
-| **Phase 7** | Version 1.0 Release (GA)| `GOAL` | 0% | `NO` | General Availability Target Goal |
+---
+
+## 📊 Phase Status Matrix & Milestone Summary
+
+| Phase ID | Phase Name | Badge | Color | Progress | Read-Only | Collapse Default | Scope / Notes |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Phase 1** | Foundation | `COMPLETED` | Green | 100% | `YES` | `YES` | Core MV3 Scaffolding & Lifecycle Engine |
+| **Phase 2** | Architecture | `COMPLETED` | Green | 100% | `YES` | `YES` | Enterprise Event Bus Architecture & SAD |
+| **Phase 3** | Documentation | `COMPLETED` | 100% | `YES` | `YES` | Repository Governance, Active Context & Portal v1.0 |
+| **Phase 4** | Business Framework | `ARCHIVED` | Teal | 100% | `YES` | `YES` | Business Framework Migration Complete (13 WPs Finished) |
+| **Phase 5** | Production Hardening | `BASELINE` | Blue | 100% | `YES` | `YES` | Production Hardening Complete (v0.5.0, 4/4 Completed) |
+| **Phase 6** | Release Engineering | `CURRENT` | Orange | 0% | `NO` | `NO (Expanded)` | Sprint 5 Focus: CI/CD Pipeline, E2E Testing, Store Package |
+| **Phase 7** | Version 1.0 Release | `GOAL` | Gold | 0% | `NO` | `YES` | Version 1.0 General Availability Target Goal |
 
 ## 💻 Development & Build Setup
 

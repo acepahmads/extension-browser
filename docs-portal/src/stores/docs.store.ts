@@ -5,7 +5,7 @@ import { MetadataEngine, DocMetadata } from '@/services/metadata-engine';
 export interface PhaseItem {
   id: string;
   name: string;
-  status: 'COMPLETED' | 'IN_PROGRESS' | 'PLANNED' | 'BLOCKED' | 'ARCHIVED' | 'BASELINE';
+  status: 'COMPLETED' | 'IN_PROGRESS' | 'PLANNED' | 'BLOCKED' | 'ARCHIVED' | 'BASELINE' | 'CURRENT' | 'GOAL';
   date?: string;
   summary?: string;
   objectives?: string[];
@@ -53,7 +53,7 @@ export interface MilestoneItem {
   sprint: string;
   category: 'Foundation' | 'Architecture' | 'Documentation' | 'Development' | 'Platform';
   phaseGroup: string;
-  status: 'COMPLETED' | 'IN_PROGRESS' | 'PLANNED' | 'BLOCKED' | 'ARCHIVED' | 'BASELINE';
+  status: 'COMPLETED' | 'IN_PROGRESS' | 'PLANNED' | 'BLOCKED' | 'ARCHIVED' | 'BASELINE' | 'CURRENT' | 'GOAL';
   completion: number;
   date: string;
   summary: string;
@@ -188,7 +188,7 @@ export const useDocsStore = defineStore('docs', () => {
 
   // Dynamic Milestones Collection
   const milestones = ref<MilestoneItem[]>([
-    // PHASE 1: FOUNDATION (COMPLETED - 100% READ ONLY)
+    // PHASE 1: FOUNDATION (COMPLETED - 100% READ ONLY - COLLAPSED)
     {
       id: 'M00',
       name: 'Project Vision & Strategy Scope',
@@ -250,7 +250,7 @@ export const useDocsStore = defineStore('docs', () => {
       notes: '100% Audit Score'
     },
 
-    // PHASE 2: ARCHITECTURE (COMPLETED - 100% READ ONLY)
+    // PHASE 2: ARCHITECTURE (COMPLETED - 100% READ ONLY - COLLAPSED)
     {
       id: 'M04',
       name: 'Enterprise Event Bus Architecture Design',
@@ -282,7 +282,7 @@ export const useDocsStore = defineStore('docs', () => {
       notes: 'Architecture frozen'
     },
 
-    // PHASE 3: DOCUMENTATION (COMPLETED - 100% READ ONLY)
+    // PHASE 3: DOCUMENTATION (COMPLETED - 100% READ ONLY - COLLAPSED)
     {
       id: 'M07',
       name: 'Engineering Documentation Foundation',
@@ -359,7 +359,7 @@ export const useDocsStore = defineStore('docs', () => {
       notes: 'Portal v1.0 Final Reached'
     },
 
-    // PHASE 4: BUSINESS FRAMEWORK (ARCHIVED - 100% READ ONLY)
+    // PHASE 4: BUSINESS FRAMEWORK (ARCHIVED - 100% READ ONLY - COLLAPSED)
     {
       id: 'M12',
       name: 'Middleware & Event Bus Core (Phase 2)',
@@ -444,14 +444,14 @@ export const useDocsStore = defineStore('docs', () => {
       ]
     },
 
-    // PHASE 5: PRODUCTION HARDENING (BASELINE v0.5.0 - 100% READ ONLY)
+    // PHASE 5: PRODUCTION HARDENING (BASELINE v0.5.0 - 100% READ ONLY - COLLAPSED)
     {
       id: 'M15',
       name: 'WP-5.1: Performance Benchmark Framework',
       sprint: 'Sprint 4 (WP-5.1)',
       category: 'Platform',
       phaseGroup: 'Phase 5: Production Hardening',
-      status: 'COMPLETED',
+      status: 'BASELINE',
       completion: 100,
       date: '2026-08-01',
       summary: 'Passive microsecond timing benchmarks, layer breakdown, memory profiling.',
@@ -466,7 +466,7 @@ export const useDocsStore = defineStore('docs', () => {
       sprint: 'Sprint 4 (WP-5.2)',
       category: 'Platform',
       phaseGroup: 'Phase 5: Production Hardening',
-      status: 'COMPLETED',
+      status: 'BASELINE',
       completion: 100,
       date: '2026-08-01',
       summary: 'RetryPolicyEngine, TimeoutGuard, FailureDetector, HealthMonitor, MTTR metrics.',
@@ -481,7 +481,7 @@ export const useDocsStore = defineStore('docs', () => {
       sprint: 'Sprint 4 (WP-5.3)',
       category: 'Platform',
       phaseGroup: 'Phase 5: Production Hardening',
-      status: 'COMPLETED',
+      status: 'BASELINE',
       completion: 100,
       date: '2026-08-01',
       summary: 'ObservabilityService, HealthDashboard 7-widget model, TelemetryService in-memory trends.',
@@ -506,21 +506,21 @@ export const useDocsStore = defineStore('docs', () => {
       notes: 'v0.5.0 Baseline Complete'
     },
 
-    // PHASE 6: RELEASE ENGINEERING (PLANNED — 0/5 COMPLETED - READ ONLY: NO)
+    // PHASE 6: RELEASE ENGINEERING (CURRENT - SPRINT 5 ACTIVE - EXPANDED BY DEFAULT)
     {
       id: 'M19',
       name: 'WP-6.1: Recovery & Resilience Hooks',
       sprint: 'Sprint 5 (WP-6.1)',
       category: 'Platform',
       phaseGroup: 'Phase 6: Release Engineering',
-      status: 'PLANNED',
+      status: 'CURRENT',
       completion: 0,
-      date: 'Pending',
+      date: 'In Progress',
       summary: 'Automated fallback recovery hooks and zero-downtime service worker restart resilience.',
       deliverables: ['Panic Shield Module', 'Recovery Hooks'],
       owner: 'Core Team',
-      reviewStatus: 'Pending',
-      notes: 'Roadmap Sprint 5'
+      reviewStatus: 'In Review',
+      notes: 'Active Sprint 5 Task'
     },
     {
       id: 'M20',
@@ -528,7 +528,7 @@ export const useDocsStore = defineStore('docs', () => {
       sprint: 'Sprint 5 (WP-6.2)',
       category: 'Platform',
       phaseGroup: 'Phase 6: Release Engineering',
-      status: 'PLANNED',
+      status: 'CURRENT',
       completion: 0,
       date: 'Pending',
       summary: 'Production build certification, automated release pipeline, and artifact signing.',
@@ -543,7 +543,7 @@ export const useDocsStore = defineStore('docs', () => {
       sprint: 'Sprint 5 (WP-6.3)',
       category: 'Platform',
       phaseGroup: 'Phase 6: Release Engineering',
-      status: 'PLANNED',
+      status: 'CURRENT',
       completion: 0,
       date: 'Pending',
       summary: 'Automated CI/CD build matrix, linting, and extension artifact packaging.',
@@ -558,7 +558,7 @@ export const useDocsStore = defineStore('docs', () => {
       sprint: 'Sprint 5 (WP-6.4)',
       category: 'Platform',
       phaseGroup: 'Phase 6: Release Engineering',
-      status: 'PLANNED',
+      status: 'CURRENT',
       completion: 0,
       date: 'Pending',
       summary: 'End-to-end integration tests, cross-browser compatibility verification, and regression tests.',
@@ -573,7 +573,7 @@ export const useDocsStore = defineStore('docs', () => {
       sprint: 'Sprint 5 (WP-6.5)',
       category: 'Platform',
       phaseGroup: 'Phase 6: Release Engineering',
-      status: 'PLANNED',
+      status: 'CURRENT',
       completion: 0,
       date: 'Pending',
       summary: 'Production minification, source map isolation, and Web Store publishing submission.',
@@ -583,16 +583,16 @@ export const useDocsStore = defineStore('docs', () => {
       notes: 'Roadmap Sprint 5'
     },
 
-    // PHASE 7: VERSION 1.0 RELEASE GA (GOAL - READ ONLY: NO)
+    // PHASE 7: VERSION 1.0 RELEASE GA (GOAL - GOLD / PURPLE - COLLAPSED BY DEFAULT)
     {
       id: 'M24',
       name: 'Version 1.0 General Availability Release',
       sprint: 'Sprint 6 Final',
       category: 'Platform',
       phaseGroup: 'Phase 7: Version 1.0 Release (GA)',
-      status: 'PLANNED',
+      status: 'GOAL',
       completion: 0,
-      date: 'Pending',
+      date: 'Target',
       summary: 'General Availability release of SPPG Companion Extension v1.0.0.',
       deliverables: ['v1.0.0 General Availability Release'],
       owner: 'Lead Architect',
@@ -610,18 +610,18 @@ export const useDocsStore = defineStore('docs', () => {
     return {
       projectName: 'SPPG Companion Platform (BGN-Extension)',
       version: 'v0.5.0',
-      currentSprint: 'Sprint 5 (Release Engineering & Build Automation)',
+      currentSprint: 'Sprint 5',
       currentMilestone: 'M19 (Release Engineering & CI/CD Pipeline)',
-      currentPhaseGroup: 'Phase 6: Release Engineering',
+      currentPhaseGroup: 'Phase 6 – Release Engineering',
       currentModule: 'src/core/integration/integration.pipeline.ts',
       nextSprint: 'Sprint 6 (Storage Engine & Persistence Adapter)',
-      architectureStatus: 'PRODUCTION READY (v0.5.0 Hardening Baseline)',
-      repositoryStatus: 'Production Ready',
+      architectureStatus: 'Complete',
+      repositoryStatus: '🟢 Production Ready',
       currentBaseline: 'v0.5.0',
       repositoryHealth: 'Excellent',
       buildStatus: 'PASS',
       typeCheckStatus: 'PASS',
-      testSuites: '11 / 11 PASS',
+      testSuitesStatus: '11 / 11 PASS',
       overallCompletion: 80.0,
       totalMilestones: milestones.value.length,
       completedMilestones: completedMilestonesCount,
@@ -641,11 +641,38 @@ export const useDocsStore = defineStore('docs', () => {
         gaRelease: 0,
         overallProgress: 80
       },
+
+      healthCard: {
+        architecture: 'Complete',
+        businessFramework: 'Complete',
+        performanceFramework: 'Complete',
+        reliabilityFramework: 'Complete',
+        observabilityPlatform: 'Complete',
+        integrationLayer: 'Complete',
+        runtimeWiring: 'Complete',
+        repositoryHealth: 'Excellent',
+        technicalDebt: 'Low',
+        build: 'PASS',
+        typeCheck: 'PASS',
+        tests: '11 / 11 PASS'
+      },
+
+      releaseTimeline: [
+        { version: 'v0.1.0', label: 'Foundation', status: 'Completed' },
+        { version: 'v0.2.0', label: 'EventBus', status: 'Completed' },
+        { version: 'v0.3.0', label: 'Business Framework', status: 'Completed' },
+        { version: 'v0.4.0', label: 'Migration', status: 'Completed' },
+        { version: 'v0.5.0', label: 'Production Hardening', status: 'BASELINE' },
+        { version: 'v0.6.0', label: 'Release Engineering', status: 'CURRENT' },
+        { version: 'v0.7.0', label: 'Beta', status: 'PLANNED' },
+        { version: 'v0.9.0', label: 'Release Candidate', status: 'PLANNED' },
+        { version: 'v1.0.0', label: 'General Availability', status: 'GOAL' }
+      ],
       
       buildMetrics: {
         status: 'PASSING',
         latestBuild: '20260802.1',
-        avgBuildTime: '2.33s',
+        avgBuildTime: '1.61s',
         successfulBuilds: '100%',
         failedBuilds: 0,
         warnings: 0,
@@ -677,7 +704,7 @@ export const useDocsStore = defineStore('docs', () => {
         docsCoverage: '100%',
         markdownFiles: totalDocs,
         reportsCount: reportDocs,
-        milestonesCount: 24,
+        milestonesCount: 26,
         architectureDocsCount: 6,
         pagesCount: 10,
         lastUpdated: '2026-08-02'
